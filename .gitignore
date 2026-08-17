@@ -1,0 +1,45 @@
+# ─────────────────────────────────────────────
+# 官方参考材料（版权内容，勿提交到 public 仓库）
+# 这些目录是只读证据，本地保留，不入库
+# ─────────────────────────────────────────────
+reference/inputs/
+reference/ipa-www/
+reference/cdn-www/
+reference/geshui-apk-unpacked/
+ios/shell/
+PLAN.md
+# ── 构建产物（由 tools/build.sh 从 reference 生成，不入库）──
+web/www/
+web/dist/
+ios/out/
+node_modules/
+
+# ── 密钥与签名凭据 ──────────────────────────────
+.env
+*.p12
+*.p8
+*.mobileprovision
+*.cer
+*.crt
+*.key
+!**/*.example
+
+# ── 临时 / 工作目录 ─────────────────────────────
+ipa_unpacked/
+shots/
+repo/
+__probe/
+*.log
+*.tmp
+
+# ── 系统 ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Kilo 本地工具配置（不入库）───────────────
+.kilo/
+.kilocode/
+KILO_REPLICA_SETUP.md
+kilo.jsonc
+kilo.json
+skills-lock.json
