@@ -564,4 +564,16 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 - **6 新 miss 补 global-shared.json**（override 实测无 toast 后落库）：basecode 字典 ×3（DM_ZRR_SSJGLB/DM_DJ_SJ_DM_GY_XZQH_HZM/list DM_DJ_XJ）/ zyss/mysslb/query/v2 / zyss/sszt/query / cxCsnrBydm / swws/mx/find（后为 get [] 或 {}）
 - **专项附加详情做透**：`queryZxfjkcZnjyXq`（POST）字段对齐 = `znjyzc.{xm,csrq,sjyjdmc,sjyrqq,yjbysj,zjsjysj,jdgjhdqmc,jdxx,fpbl,yxbz,sbkcnd}` + `tyxx.{nsrsjhm,nsrdzyx,nsrtxdz,sbkxfs,kjywrMc,dwdjxh}` + `znjyzcList[0].yfpbl` + `eduSpouseInfo.sfypo`。`#/education/detail` 全字段渲染，"很抱歉"消失。
 
-**遗留（下一轮，见 REVIEW 文档 §5 优先级）**：申报记录 tab 数据依赖 store 预置（recordSbxh/recordSblsh/recordYwlxdm/tabIndex，从真实入口进才拉数）；invoiceTitle/scanCode 历史矛盾未深挖（"很抱歉"态，接口 hit=形状错）；tax_message 详情需带 id。截图 vision 一行标注未做（18 张可用 vision_analyze_image 补）。
+**遗留（下一轮，见 REVIEW 文档 §5 优先级）**：申报记录 tab 数据依赖 store 预置（recordSbxh/recordSblsh/recordYwlxdm/tabIndex，从申报入口进才拉数）；invoiceTitle/scanCode 历史矛盾未深挖（"很抱歉"态，接口 hit=形状错）；tax_message 详情需带 id。截图 vision 一行标注未做（18 张可用 vision_analyze_image 补）。
+
+## 22. 任务1（轮次①）代码完成（2026-08-19 02:30 更新）— api-stub 兜底 + tzgg 空态 + 安全区 + 图标，commit 73bf97b
+> 细节见 `docs/PHASE1-REPORT.md` §5 轮次①；本任务不 commit 策略例外（用户授权「开新会话执行」= 可 push）。
+
+**本轮完成**：
+- **api-stub 零 miss 兜底**：`web/overlays/api-stub.js:169-186` 未命中请求 → `{code:'SUCCESS',data:null}` + console warn（消真机 5s 黑框转圈 +「很抱歉」）；catch 走 failure 兜底
+- **tzgg/lamp/rdwt 空态 fixture**：`web/fixtures/reference/tzgg-mock.json` 6 条 SUCCESS（lamp/list/query、rdwt/query、list/query、query、detail、sszc/switch）；hmm 为空数组 → 区块隐藏属预期，轮次② 才提真字段（PvK7.js / deobfuscated.js:74517-74532）
+- **安全区下移**：`ios/platforms/ios/ETaxSim/MainViewController.m` webView frame 向下 `max(safeAreaInsets.top,20)`、底部减 safeArea
+- **图标 CgBI→标准 PNG 链路**：`ios/build-ipa.sh` [1/6] sips 由 `orig/AppIcon60x60@2x.png` 解码→缩放 23 尺寸（11 张 orig CgBI 入库 git）；CI 已验证：bundle 内 AppIcon=官方 CgBI（Xcode actool 编译），解码采样 corner(55,173,255)/center(27,134,255)= 官方蓝
+- **App 名统一**：根/ios/config.xml + platforms ios config.xml + Info.plist 全部「个人所得税」
+
+**待真机验证清单（§23 预期）**：SideStore 导入 → 首页 5s 出内容无黑框/无「很抱歉」→ 顶部搜索不遮安全区 → 图标蓝色 → 5 tab 可切换 → 反馈后更新 §23

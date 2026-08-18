@@ -2,7 +2,10 @@
 
 完整历史见 `docs/HANDOVER.md`（§18-§22 权威）；总进度/剩余见 `docs/WORK-REPORT-2026-08-18-session3.md`；第一版检阅交付见 `docs/REVIEW-FIRST-VERSION.md`；**阶段评估/问题分类/时间表/dev 面板改进见 `docs/PHASE1-REPORT.md`（2026-08-19 新）**。更新用 `/checkpoint`。
 
-## 当前状态（2026-08-19 00:55）：交付收尾 + 最小 Cordova 壳文件就绪（待 push）
+## 当前状态（2026-08-19 03:35）：任务1（轮次①）已 push + CI 出包，待真机验证
+- **CI 出包成功**：commit 73bf97b 已 push main → Actions build #5 通过（1m25s）→ artifact `etax-sim-ipa` 33MB 已下载至 `/tmp/kilo/etax-sim/etax-sim-ipa/etax-sim.ipa`
+- **IPA 校验**：Info.plist 显示名「个人所得税」✅；bundle 内 AppIcon=官方 CgBI（Xcode actool 编译产物，设备原生可读），解码采样 corner(55,173,255)/center(27,134,255) = 官方蓝 ✅；sips→生成的 icon-*.png 为标准 PNG+IHDR，链路正确
+- **待用户真机验证**：SideStore 导入 → 首页 5s 出内容无黑框/无「很抱歉」→ 顶部搜索不遮安全区 → 图标蓝色 → 结果反馈后 STATE 按 §23 更新
 - **可演示基线**：smoke hit=14 miss=0 blocked=0，outbound=0；8088 常驻正常
 - **本轮完成**：
   0. App 名统一「个人所得税」（根 ios/config.xml + platforms config/plist 两处已一致）
@@ -20,7 +23,7 @@
 - 插件触点盘点（实证）：http×14=api-stub 挂载点（勿真实现）；app×36/etasIfaa×34/LaunchHotCode×18/sim×30 等全 JS mock；weibo×0 唯一零引用；官方原生 SDK 全部不带
 
 ## 遗留（优先级序）
-1. **用户动作（IPA）**：push 全部新文件 → Actions 跑 build-ios.yml → 下载 etax-sim.ipa → SideStore 导入安装 → 验证打开首页
+1. **用户动作（真机验证）**：下载 artifact（gh run download 32177140012）→ SideStore 导入安装 → 按清单验证首页/黑框/安全区/图标/tab
 2. 若 SideStore 拒绝免签包：兜底 `codesign -s -`（Xcode 自带 ad-hoc）需用户加一行到 build-ipa.sh；真机验证后才能定论
 3. 申报记录 tab（store 预置 recordSbxh/…，需真实入口触发）
 4. 发票抬头/scanCode（ttxx 响应形状，§16 历史矛盾）
