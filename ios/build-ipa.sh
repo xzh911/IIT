@@ -8,7 +8,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-APP_DIR="ios/platforms/ios/ETaxSim"
+APP_DIR="ios/platforms/ios"
 XCODEPROJ="ios/platforms/ios/ETaxSim.xcodeproj"
 OUT="ios/out"
 SCHEME="ETaxSim"
