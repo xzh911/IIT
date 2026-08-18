@@ -166,8 +166,22 @@
         } catch (e) {
           failure && failure({ status: -1, error: 'stub-error:' + e.message });
         }
-      } else if (failure) {
-        failure({ status: -1, error: 'not-mocked' });
+      } else {
+        // 未 mock 接口：返回成功空响应（页面按空态渲染），避免官方"很抱歉"错误弹层。
+        // 真机离线/未覆盖接口不再挂起超时（原 5s 转圈）也不弹错误页。
+        if (window.__ETAX_STUB_DEBUG__) {
+          console.warn('[STUB] MISS fallback -> SUCCESS empty', method.toUpperCase(), path);
+        }
+        try {
+          success && success({
+            status: 200,
+            url: url,
+            headers: { 'content-type': 'application/json' },
+            data: JSON.stringify({ code: 'SUCCESS', message: '', data: null }),
+          });
+        } catch (e) {
+          failure && failure({ status: -1, error: 'stub-fallback:' + e.message });
+        }
       }
     },
 

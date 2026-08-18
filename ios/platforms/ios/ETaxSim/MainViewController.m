@@ -27,4 +27,15 @@
     [self.launchView setAlpha:1];
 }
 
+// 复刻壳适配：WebView 布局在安全区下方（与官方 App 行为一致，
+// 页面顶部渐变/搜索栏不被 iOS 状态栏遮挡）
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    UIEdgeInsets s = self.view.safeAreaInsets;
+    CGFloat top = s.top > 0 ? s.top : 20; // 旧机型无 safeArea 时兜底 20pt
+    CGRect b = self.view.bounds;
+    self.webView.frame = CGRectMake(0, top, b.size.width, b.size.height - top);
+}
+
 @end

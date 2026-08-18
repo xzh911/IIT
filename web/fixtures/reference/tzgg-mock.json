@@ -1,0 +1,32 @@
+[
+  {
+    "match": "/commonbusiness/tzgg/lamp/list/query",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": [] }
+  },
+  {
+    "match": "/commonbusiness/tzgg/rdwt/query",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": [] }
+  },
+  {
+    "match": "/commonbusiness/tzgg/list/query",
+    "method": "post",
+    "data": { "code": "SUCCESS", "data": [] }
+  },
+  {
+    "match": "/commonbusiness/tzgg/query",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": null }
+  },
+  {
+    "match": "/commonbusiness/tzgg/detail",
+    "method": "post",
+    "data": { "code": "SUCCESS", "data": null }
+  },
+  {
+    "match": "/commonbusiness/tzgg/sszc/switch",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": null }
+  }
+]

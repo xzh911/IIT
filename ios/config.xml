@@ -5,7 +5,7 @@
      - 若日后运行 cordova prepare 会按此文件重生成平台 plist，注意与
        platforms/ios/ETaxSim/ETaxSim-Info.plist 手调项保持一致（状态栏/ATS/显示名） -->
 <widget id="com.etax.sim" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>个税模拟</name>
+    <name>个人所得税</name>
     <description>个人所得税 App 高保真复刻（离线演示，数据为合成 mock，非官方应用）</description>
     <author>replica-project</author>
     <content src="index.html" />

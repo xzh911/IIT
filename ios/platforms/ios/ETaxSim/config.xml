@@ -25,10 +25,10 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
-    <name>ETaxSim</name>
-    <description>Sample Apache Cordova App</description>
-    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
-        Apache Cordova Team
+    <name>个人所得税</name>
+    <description>个人所得税复刻演示（免签壳，全部数据为本地 mock）</description>
+    <author email="dev@example.local" href="https://example.local">
+        Replica Project
     </author>
     <content src="index.html" />
     <allow-intent href="http://*/*" />

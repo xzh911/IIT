@@ -1,10 +1,11 @@
 # STATE.md — 项目当前状态（会话开始读一次，里程碑后更新，保持 ≤50 行）
 
-完整历史见 `docs/HANDOVER.md`（§18-§22 权威）；总进度/剩余见 `docs/WORK-REPORT-2026-08-18-session3.md`；第一版检阅交付见 `docs/REVIEW-FIRST-VERSION.md`。更新用 `/checkpoint`。
+完整历史见 `docs/HANDOVER.md`（§18-§22 权威）；总进度/剩余见 `docs/WORK-REPORT-2026-08-18-session3.md`；第一版检阅交付见 `docs/REVIEW-FIRST-VERSION.md`；**阶段评估/问题分类/时间表/dev 面板改进见 `docs/PHASE1-REPORT.md`（2026-08-19 新）**。更新用 `/checkpoint`。
 
 ## 当前状态（2026-08-19 00:55）：交付收尾 + 最小 Cordova 壳文件就绪（待 push）
 - **可演示基线**：smoke hit=14 miss=0 blocked=0，outbound=0；8088 常驻正常
 - **本轮完成**：
+  0. App 名统一「个人所得税」（根 ios/config.xml + platforms config/plist 两处已一致）
   1. REVIEW §六 18 张截图 vision 一行标注全补（18/18）
   2. 税收优惠备案补 1 条：接口 `GET /sb/yd/yh/ssjm/sq/list`（queryTaxPreferenceApplyList，chunk 441），字段 `jmsxmc/lrrq/ztDm/ztmc/yhjmsXh/yhsqmxXh`，global-shared 落 1 条 → 「赡养老人专项附加扣除/2026.03.15/生效」渲染 ✅（探针 __probe/review_taxpref.js）
   3. **IPA 路线 B 文件就绪**（自建最小 Cordova 壳，待用户 push + Actions + SideStore 真机验证）：
@@ -23,7 +24,7 @@
 2. 若 SideStore 拒绝免签包：兜底 `codesign -s -`（Xcode 自带 ad-hoc）需用户加一行到 build-ipa.sh；真机验证后才能定论
 3. 申报记录 tab（store 预置 recordSbxh/…，需真实入口触发）
 4. 发票抬头/scanCode（ttxx 响应形状，§16 历史矛盾）
-5. tax_message 详情需 id；真机状态栏/安全区像素对齐（规则 §11）；图标/启动图换官方资源（用户决策，灰色地带）
+5. tax_message 详情需 id；真机状态栏/安全区像素对齐（规则 §11）；启动图仍默认（图标已换官方蓝标）
 
 ## 关键文件位置
 - fixture：web/fixtures/reference/（global-shared 22 条）；overlay：web/overlays/（cordova.js mock 浏览器/壳共用）；探针：__probe/；截图：web/dev/diffs/；参考只读：reference/、packetSniffing/*.har
