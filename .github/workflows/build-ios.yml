@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 下载官方 web 基线（Release asset: cdn-www-v1）
+      - name: "下载官方 web 基线 (asset cdn-www-v1)"
         # reference/cdn-www 是版权内容不入库；由本地打包上传到 GitHub Release，
         # CI 解压后即可复用与本地一致的构建流程。
         run: |
