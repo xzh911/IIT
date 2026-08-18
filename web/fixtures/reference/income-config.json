@@ -1,0 +1,15 @@
+{
+  "match": "/sb/yd/gg/cxCsnrList",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "SB_NSMX_APP_PAGESIZE_NUM": 20,
+      "SB_NSMX_DELAY_TIME": 10,
+      "SB_LWZB_QUERT_SDXMLB": "[]",
+      "SB_LWZB_SF_ZDTS": "N",
+      "SB_LWZB_YYSS_KG": "N",
+      "SB_LWZB_QUERY_KG": "N"
+    }
+  }
+}

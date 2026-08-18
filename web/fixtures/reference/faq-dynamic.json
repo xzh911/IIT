@@ -1,0 +1,35 @@
+[
+  {
+    "match": "/commonbusiness/cjwt/lx/query",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": [ { "wtlx": "ZFKC_2023", "lxmc": "常见问题" } ] }
+  },
+  {
+    "match": "/commonbusiness/cjwt/v2/lx/query",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "jtzykg": "Y",
+        "jtzydz": "./static/js/cjwt-hsqj2025_v1.0.js",
+        "wtlx": [
+          { "wtlx": "25_YYBS", "lxmc": "预约办税" },
+          { "wtlx": "25_XTZC", "lxmc": "系统操作" },
+          { "wtlx": "25_NDHS", "lxmc": "年度汇算" },
+          { "wtlx": "25_TSXG", "lxmc": "退税相关" }
+        ]
+      }
+    }
+  },
+  {
+    "match": "/commonbusiness/cjwt/query",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        { "wtbt": "我需要满足什么条件才可以申请开具纳税记录？", "wtbq": null, "wtda": "只要您在2019年1月1日（含）以后取得个人所得税应税所得，并自行或由扣缴义务人向税务机关办理了纳税申报，不论是否实际缴纳税款，均可以申请开具纳税记录。" },
+        { "wtbt": "我可以通过哪些途径开具纳税记录？", "wtbq": null, "wtda": "您可以通过个人所得税APP、自然人电子税务局申请开具本人的个人所得税纳税记录，或到办税服务厅申请开具。" }
+      ]
+    }
+  }
+]

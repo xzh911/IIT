@@ -1,0 +1,20 @@
+[
+  {
+    "match": "/common/srf/getToken",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "token": "MOCK-REALAUTH-TOKEN"
+      }
+    }
+  },
+  {
+    "match": "/commonbusiness/event/query",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": {}
+    }
+  }
+]

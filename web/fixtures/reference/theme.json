@@ -1,0 +1,8 @@
+{
+  "match": "/zrr/common/theme/query",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": "NORMAL"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "match": "/zh/switch/query",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "app.sjxx.rgx.switch": "N",
+      "ZRR_IFFA_AUTH_SWITCH": "N",
+      "app.aqjp.switch": "N",
+      "app.afs.switch": "N",
+      "APP_ERROR_LOG_UPLOAD_SWITCH": "N",
+      "newmetric.switch": "N",
+      "emas.switch": "N",
+      "APP_YJFK_SWITCH": "N",
+      "swwscx.switch": "N",
+      "zdycd.switch": "N",
+      "SHOW_ZTY_SWITCH_ANDROID": "N",
+      "SHOW_ZTY_SWITCH_IOS": "N",
+      "app.gsjy.tpcz.switch": "N",
+      "refund.popinfo.switch": "N",
+      "app.rzj.ztyfx.switch": "N",
+      "app.nsjlkj.switch": "N",
+      "app.nsjl.ztyfx.switch": "N",
+      "zssj.validate.switch": "N",
+      "zxfjkclxsl.switch": "N",
+      "message.subscript.switch": "N",
+      "message.xxtz.switch": "N",
+      "jwnd.switch": "N",
+      "ZXFJKC_JTCY_UPDATESYS_SWITCH": "N"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "match": "/zrr/yhzh/list/query",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        {
+          "yhbh": "MOCKYH0001",
+          "yhhbDm": "0102",
+          "yhhbmc": "工商银行",
+          "yhkh": "6222020200112233",
+          "yhklbDm": "01",
+          "yhkjybz": "1"
+        }
+      ]
+    }
+  }
+]

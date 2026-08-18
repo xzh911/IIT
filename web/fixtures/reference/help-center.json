@@ -1,0 +1,49 @@
+[
+  {
+    "match": "common/bzzx/bzzxLx",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        {
+          "bzlxMc": "政策法规",
+          "subBzzxLxAppDTOList": [
+            {
+              "bzlxMc": "个人所得税相关政策",
+              "bzlxXh": "ZC0001",
+              "subBzzxLxAppDTOList": [
+                { "bzlxMc": "综合所得范围", "bzlxXh": "ZC0001-1" },
+                { "bzlxMc": "税率表", "bzlxXh": "ZC0001-2" }
+              ]
+            },
+            {
+              "bzlxMc": "专项附加扣除政策",
+              "bzlxXh": "ZC0002",
+              "subBzzxLxAppDTOList": [
+                { "bzlxMc": "子女教育", "bzlxXh": "ZC0002-1" },
+                { "bzlxMc": "住房贷款利息", "bzlxXh": "ZC0002-2" }
+              ]
+            },
+            { "bzlxMc": "税收优惠政策", "bzlxXh": "ZC0003" }
+          ]
+        },
+        {
+          "bzlxMc": "办税流程",
+          "subBzzxLxAppDTOList": [
+            { "bzlxMc": "综合所得年度汇算", "bzlxXh": "LC0001" },
+            { "bzlxMc": "专项附加扣除填报", "bzlxXh": "LC0002" },
+            { "bzlxMc": "收入纳税明细查询", "bzlxXh": "LC0003" },
+            { "bzlxMc": "完税证明开具", "bzlxXh": "LC0004" }
+          ]
+        },
+        {
+          "bzlxMc": "常见问题",
+          "subBzzxLxAppDTOList": [
+            { "bzlxMc": "注册登录问题", "bzlxXh": "CJ0001" },
+            { "bzlxMc": "数据查询问题", "bzlxXh": "CJ0002" }
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1060" viewBox="0 0 750 1060">
+  <rect width="750" height="1060" fill="#ffffff"/>
+  <rect x="1" y="1" width="748" height="1058" fill="none" stroke="#c9c9c9" stroke-width="2"/>
+  <rect x="26" y="26" width="698" height="1008" fill="none" stroke="#c9c9c9" stroke-width="1"/>
+  <text x="375" y="90" text-anchor="middle" font-size="36" font-weight="bold" fill="#222222" font-family="'PingFang SC','SimSun',serif">税收完税证明（表格式）</text>
+  <text x="375" y="130" text-anchor="middle" font-size="18" fill="#666666" font-family="'PingFang SC','SimSun',serif">TAX PAYMENT CERTIFICATE</text>
+  <rect x="600" y="60" width="96" height="96" fill="#f5f5f5" stroke="#999" stroke-width="1"/>
+  <text x="648" y="110" text-anchor="middle" font-size="12" fill="#999" font-family="sans-serif">（验证码区域）</text>
+  <line x1="60" y1="170" x2="690" y2="170" stroke="#999" stroke-width="1"/>
+  <text x="60" y="210" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">纳税人名称：张伟</text>
+  <text x="60" y="250" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">纳税人识别号：110101199001011234</text>
+  <text x="60" y="290" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">税款所属时期：2026-01-01 至 2026-12-31</text>
+  <line x1="60" y1="330" x2="690" y2="330" stroke="#333" stroke-width="1"/>
+  <text x="60" y="370" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">序号</text>
+  <text x="180" y="370" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">税种</text>
+  <text x="360" y="370" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">品目名称</text>
+  <text x="520" y="370" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">实缴（退）金额</text>
+  <line x1="60" y1="390" x2="690" y2="390" stroke="#333" stroke-width="1"/>
+  <text x="60" y="430" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">1</text>
+  <text x="180" y="430" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">个人所得税</text>
+  <text x="360" y="430" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">工资薪金所得</text>
+  <text x="520" y="430" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">458.20</text>
+  <line x1="60" y1="450" x2="690" y2="450" stroke="#ccc" stroke-width="1"/>
+  <text x="60" y="490" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">2</text>
+  <text x="180" y="490" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">个人所得税</text>
+  <text x="360" y="490" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">经营所得</text>
+  <text x="520" y="490" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">7451.60</text>
+  <line x1="60" y1="540" x2="690" y2="540" stroke="#333" stroke-width="1"/>
+  <text x="60" y="580" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">金额合计（大写）：</text>
+  <text x="300" y="580" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">壹万叁仟肆佰捌拾柒元玖角玖分</text>
+  <text x="60" y="620" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">金额合计（小写）：</text>
+  <text x="300" y="620" font-size="18" fill="#333" font-family="'PingFang SC','SimSun',serif">¥ 13487.99</text>
+  <line x1="60" y1="660" x2="690" y2="660" stroke="#333" stroke-width="1"/>
+  <text x="60" y="700" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">税务机关：国家税务总局北京市税务局</text>
+  <text x="60" y="740" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">开具日期：2026-08-18</text>
+  <text x="60" y="780" font-size="17" fill="#333" font-family="'PingFang SC','SimSun',serif">电子凭证号码：MOCK202600000001</text>
+  <text x="375" y="860" text-anchor="middle" font-size="26" font-weight="bold" fill="#cc0000" font-family="'PingFang SC','SimSun',serif">完税证明专用章（模拟）</text>
+  <ellipse cx="375" cy="860" rx="150" ry="40" fill="none" stroke="#cc0000" stroke-width="2"/>
+  <text x="375" y="980" text-anchor="middle" font-size="14" fill="#999" font-family="sans-serif">本图为离线复刻演示用 mock 数据，非官方完税证明</text>
+</svg>

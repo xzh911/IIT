@@ -1,0 +1,4 @@
+{
+  "_comment": "自定义层：消息管理（模拟消息）。API 路径待探针确认后填充。所有 mock 数据必须带 source:mock",
+  "routes": []
+}

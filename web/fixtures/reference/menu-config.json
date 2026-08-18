@@ -1,0 +1,13 @@
+{
+  "match": "/mportal/common/menu/config",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": [
+      { "csDm": "index", "csnr": "./static/menu-shim.js" },
+      { "csDm": "tax", "csnr": "./static/menu-shim.js" },
+      { "csDm": "personal", "csnr": "./static/menu-shim.js" },
+      { "csDm": "ba", "csnr": "./static/menu-shim.js" }
+    ]
+  }
+}

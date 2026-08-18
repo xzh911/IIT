@@ -1,0 +1,55 @@
+{
+  "match": "/zrr/wszm/query",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "total": 2,
+      "hjse": 13487.99,
+      "list": [
+        {
+          "ddbh": "MOCK202600000001",
+          "pzMc": "税收完税证明（表格式）",
+          "pzje": 458.2,
+          "zfje": 458.2,
+          "kjrq": "2026-01-15",
+          "payTime": "2026-01-15 10:23:45",
+          "jkfsMc": "三方协议缴税",
+          "pzztMc": "已开具",
+          "wszmztDm": "01",
+          "state": false,
+          "sdxm": "工资薪金所得",
+          "skssqq": "2026-01-01",
+          "skssqz": "2026-01-31",
+          "sjtse": 458.2,
+          "skssjg": "国家税务总局北京市税务局",
+          "sz": "个人所得税",
+          "ypzh": "MOCK202600000001",
+          "sbrq": "2026-01-15",
+          "hsqj": false
+        },
+        {
+          "ddbh": "MOCK202600000002",
+          "pzMc": "税收完税证明（表格式）",
+          "pzje": 7451.6,
+          "zfje": 7451.6,
+          "kjrq": "2026-04-20",
+          "payTime": "2026-04-20 14:05:12",
+          "jkfsMc": "银联缴税",
+          "pzztMc": "已开具",
+          "wszmztDm": "01",
+          "state": false,
+          "sdxm": "经营所得",
+          "skssqq": "2026-01-01",
+          "skssqz": "2026-12-31",
+          "sjtse": 7451.6,
+          "skssjg": "国家税务总局北京市税务局",
+          "sz": "个人所得税",
+          "ypzh": "MOCK202600000002",
+          "sbrq": "2026-04-20",
+          "hsqj": false
+        }
+      ]
+    }
+  }
+}

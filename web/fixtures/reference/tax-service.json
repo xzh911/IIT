@@ -1,0 +1,30 @@
+[
+  {
+    "match": "zh/loginstatus/check",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": { "isLogin": true } }
+  },
+  {
+    "match": "commonbusiness/lyzx/zxlx/query",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        { "dm": "01", "nr": "收入纳税明细" },
+        { "dm": "02", "nr": "专项附加扣除" },
+        { "dm": "03", "nr": "综合所得年度汇算" },
+        { "dm": "04", "nr": "完税证明开具" }
+      ]
+    }
+  },
+  {
+    "match": "commonbusiness/znzx/fwqx/query",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": { "znzxSwitch": "N" } }
+  },
+  {
+    "match": "commonbusiness/lyzx/pop",
+    "method": "get",
+    "data": { "code": "SUCCESS", "data": { "title": "", "content": "" } }
+  }
+]

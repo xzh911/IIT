@@ -1,0 +1,73 @@
+{
+  "match": "/sb/yd/gg/cxNsmxList",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "nsmxList": [
+        {
+          "skssqq": "2026-01-01",
+          "skssqz": "2026-01-31",
+          "sdxmDlDm": "01",
+          "sdxmDlmc": "综合所得",
+          "grsdssdxmmc": "工资薪金所得",
+          "ywlxDm": "A061001019",
+          "ywlxmc": "正常工资薪金",
+          "kjywrMc": "示例科技有限公司",
+          "sre": 15800,
+          "ybtse": 458.2,
+          "sblsh": "MOCK202601010000000001",
+          "mxxh": "1",
+          "nsrdah": "MOCK110101199001011234"
+        },
+        {
+          "skssqq": "2026-02-01",
+          "skssqz": "2026-02-28",
+          "sdxmDlDm": "01",
+          "sdxmDlmc": "综合所得",
+          "grsdssdxmmc": "工资薪金所得",
+          "ywlxDm": "A061001019",
+          "ywlxmc": "正常工资薪金",
+          "kjywrMc": "示例科技有限公司",
+          "sre": 15800,
+          "ybtse": 458.2,
+          "sblsh": "MOCK202602010000000002",
+          "mxxh": "1",
+          "nsrdah": "MOCK110101199001011234"
+        },
+        {
+          "skssqq": "2026-03-01",
+          "skssqz": "2026-03-31",
+          "sdxmDlDm": "02",
+          "sdxmDlmc": "劳务报酬所得",
+          "grsdssdxmmc": "劳务报酬所得",
+          "ywlxDm": "A061001020",
+          "ywlxmc": "一般劳务报酬",
+          "kjywrMc": "示例文化传媒有限公司",
+          "sre": 32000,
+          "ybtse": 5120,
+          "sblsh": "MOCK202603010000000003",
+          "mxxh": "1",
+          "nsrdah": "MOCK110101199001011234"
+        },
+        {
+          "skssqq": "2026-01-01",
+          "skssqz": "2026-12-31",
+          "sdxmDlDm": "03",
+          "sdxmDlmc": "经营所得",
+          "grsdssdxmmc": "经营所得",
+          "ywlxDm": "A061001021",
+          "ywlxmc": "个体工商户经营所得",
+          "kjywrMc": "示例个体工商户",
+          "sre": 94000,
+          "ybtse": 7451.6,
+          "sblsh": "MOCK202601010000000004",
+          "mxxh": "1",
+          "nsrdah": "MOCK110101199001011234"
+        }
+      ],
+      "ybtseHj": 13487.99,
+      "sreHj": 157600
+    }
+  }
+}

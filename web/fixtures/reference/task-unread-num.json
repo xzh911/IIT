@@ -1,0 +1,12 @@
+{
+  "match": "/zrr/task/unRead/query",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": [
+      { "status": "01", "counts": 1 },
+      { "status": "02", "counts": 0 },
+      { "status": "03", "counts": 1 }
+    ]
+  }
+}

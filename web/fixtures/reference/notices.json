@@ -1,0 +1,4 @@
+{
+  "_comment": "通知公告列表（POST /commonbusiness/tzgg/query）— 待探针确认响应结构后填充；当前不 mock（走失败空态）",
+  "routes": []
+}

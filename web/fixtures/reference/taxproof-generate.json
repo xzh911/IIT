@@ -1,0 +1,10 @@
+{
+  "match": "/zrr/wszm/kj",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "kjsqxh": "MOCK-WSZM-KJSQXH-2025-001"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "match": "/zrr/message/type/wdxxsl/query",
+  "method": "post",
+  "data": { "code": "SUCCESS",     "data": { "normalWdsl": 0, "swxxWdsl": 0 } }
+}

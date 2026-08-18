@@ -1,0 +1,8 @@
+{
+  "match": "/common/basecode/CS_SB_XGCS/values/SB_ZXFJKCUP2023_ZCSM",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": "<p style=\"text-indent:2em;\">8月31日，国务院发布《关于提高个人所得税有关专项附加扣除标准的通知》（国发〔2023〕13号），提高了赡养老人、子女教育、3岁以下婴幼儿照护三项专项附加扣除的标准。其中，赡养老人专项附加扣除标准，<span style=\"color: #FB7E25;\">从每月2000元提高至每月3000元</span>，子女教育、3岁以下婴幼儿照护专项附加扣除标准<span style=\"color: #FB7E25;\">从每个子女每月1000元提高至每月2000元</span>，纳税人从9月申报期起即可享受。</p>"
+  }
+}

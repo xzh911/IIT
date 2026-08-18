@@ -1,0 +1,41 @@
+{
+  "match": "/zrr/common/appdist/query",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "bannerVOS": [
+        {
+          "bannerCode": "banner1",
+          "cls": "banner1",
+          "bannerUrl": "./static/images/banner1@2x.ae2771a.png",
+          "title": "综合所得年度汇算",
+          "linkUrl": ""
+        },
+        {
+          "bannerCode": "banner2",
+          "cls": "banner2",
+          "bannerUrl": "./static/images/banner2@2x.25d18e0.png",
+          "title": "专项附加扣除",
+          "linkUrl": ""
+        },
+        {
+          "bannerCode": "banner3",
+          "cls": "banner3",
+          "bannerUrl": "./static/images/banner3@2x.8e1eef8.png",
+          "title": "收入纳税明细",
+          "linkUrl": ""
+        },
+        {
+          "bannerCode": "banner4",
+          "cls": "banner4",
+          "bannerUrl": "./static/images/banner4@2x.f859bb0.png",
+          "title": "纳税记录开具",
+          "linkUrl": ""
+        }
+      ],
+      "bannerInterval": 3000,
+      "ztyVOS": []
+    }
+  }
+}

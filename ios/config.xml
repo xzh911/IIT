@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- 最小 Cordova 壳配置（自建，非官方壳）：
+     - 第一版零原生插件：cordova.js 用 web/overlays 的 mock（api-stub 拦截全部请求，零外联）
+     - 免签构建（CODE_SIGNING_ALLOWED=NO）→ SideStore 设备端 Apple ID 重签安装
+     - 若日后运行 cordova prepare 会按此文件重生成平台 plist，注意与
+       platforms/ios/ETaxSim/ETaxSim-Info.plist 手调项保持一致（状态栏/ATS/显示名） -->
+<widget id="com.etax.sim" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>个税模拟</name>
+    <description>个人所得税 App 高保真复刻（离线演示，数据为合成 mock，非官方应用）</description>
+    <author>replica-project</author>
+    <content src="index.html" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="deployment-target" value="13.0" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+</widget>

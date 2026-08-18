@@ -1,0 +1,10 @@
+{
+  "match": "/zrr/dzzl/url/query",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "viewUrl": "./static/images/taxproof-mock.svg"
+    }
+  }
+}

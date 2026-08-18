@@ -1,0 +1,12 @@
+{
+  "match": "/zrr/message/classify/query",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": [
+      { "xxflDm": "ZYTX", "xxflmc": "重要提示" },
+      { "xxflDm": "BLTS", "xxflmc": "办理提醒" },
+      { "xxflDm": "SCZC", "xxflmc": "税收政策" }
+    ]
+  }
+}

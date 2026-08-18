@@ -1,0 +1,18 @@
+{
+  "match": "/commonbusiness/tzgg/pop/find",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "content": [
+        {
+          "contentId": "mock-notice-001",
+          "title": "关于个人所得税综合所得年度汇算办理的温馨提示",
+          "content": "2026年度个人所得税综合所得汇算清缴即将开始，纳税人可通过手机个人所得税APP办理。",
+          "date": "2026-08-18",
+          "source": "mock"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+name: Build iOS IPA (SideStore, unsigned)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'ios/**'
+      - '.github/workflows/build-ios.yml'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 下载官方 web 基线（Release asset: cdn-www-v1）
+        # reference/cdn-www 是版权内容不入库；由本地打包上传到 GitHub Release，
+        # CI 解压后即可复用与本地一致的构建流程。
+        run: |
+          mkdir -p reference
+          curl -sL -H "Authorization: token ${{ github.token }}" \
+            -H "Accept: application/octet-stream" \
+            -o /tmp/cdn-www.zip \
+            https://github.com/xzh911/IIT/releases/download/cdn-www-v1/cdn-www.zip
+          unzip -q /tmp/cdn-www.zip -d reference/
+
+      - name: 构建 web/www（纯 python3，macos 自带）
+        run: bash web/build.sh
+
+      - name: 构建免签 IPA（xcodebuild CODE_SIGNING_ALLOWED=NO）
+        run: bash ios/build-ipa.sh
+
+      - name: 上传 IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: etax-sim-ipa
+          path: ios/out/etax-sim.ipa
+          if-no-files-found: error

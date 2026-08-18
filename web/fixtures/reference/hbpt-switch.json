@@ -1,0 +1,5 @@
+{
+  "match": "/sb/yd/hbpt/sfzs",
+  "method": "get",
+  "data": { "code": "SUCCESS", "data": "N" }
+}

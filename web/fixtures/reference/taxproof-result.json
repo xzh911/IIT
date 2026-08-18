@@ -1,0 +1,14 @@
+{
+  "match": "/zrr/wszm/kjcx",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "wszmPics": [
+        {
+          "fileId": "MOCK-WSZM-FILE-001"
+        }
+      ]
+    }
+  }
+}

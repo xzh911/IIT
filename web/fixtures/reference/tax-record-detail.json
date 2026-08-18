@@ -1,0 +1,62 @@
+{
+  "match": "/sb/yd/gg/cxNsmxXq",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "jbqkDetail": {
+        "ywlxDm": "A061001019",
+        "ywlxmc": "正常工资薪金",
+        "sdxmDm": "0101",
+        "sdxmDlDm": "01",
+        "sdxmDlmc": "综合所得",
+        "sdxmmc": "工资薪金所得",
+        "kjywrMc": "示例科技有限公司",
+        "kjywrsbh": "91110108MA01QABC2X",
+        "kjywrdah": "91110108MA01QABC2X",
+        "zgswjgMc": "国家税务总局北京市海淀区税务局",
+        "jyqdMc": "代扣代缴",
+        "sbrq": 1767974400000,
+        "skssqq": 1767196800000,
+        "skssqz": 1769788800000,
+        "sfhm": "N",
+        "sfljsd": "Y",
+        "zsfsDm": "100",
+        "yjfsDm": "01",
+        "jsbs": "3",
+        "sbjlSre": 15800,
+        "sbjlYbtse": 458.2,
+        "sblsh": "MOCK202601010000000001",
+        "sbmxxh": "1",
+        "mxxh": "1",
+        "nsrdah": "MOCK110101199001011234"
+      },
+      "bqDetail": {
+        "sre": 15800,
+        "mssr": 0,
+        "jbjcfy": 5000,
+        "zjfkc": 0,
+        "zykcdjze": 0,
+        "zxkchj": 3558,
+        "jbylbxf": 1264,
+        "jbyilbx": 319,
+        "sybxf": 79,
+        "gjj": 1896,
+        "qtkchj": 0,
+        "nj": 0,
+        "syylbx": 0,
+        "qtkcqt": 0,
+        "xdsl": 0
+      },
+      "skjsDetail": {
+        "ynssde": 5242,
+        "sl1": 0.03,
+        "sskcs": 0,
+        "ynse": 157.26,
+        "jmse": 0,
+        "yjse": 157.26,
+        "ybtse": 157.26
+      }
+    }
+  }
+}

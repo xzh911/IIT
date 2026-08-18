@@ -1,0 +1,11 @@
+{
+  "match": "/zrr/wszm/kjcs",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "ykjcs": 0,
+      "zkjcs": 5
+    }
+  }
+}

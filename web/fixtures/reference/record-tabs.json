@@ -1,0 +1,117 @@
+[
+  {
+    "match": "/zs/jkjl/query",
+    "method": "post",
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        {
+          "ddbh": "20263P010000000000001",
+          "state": "已缴款",
+          "zfje": 1580.0,
+          "jkfsMc": "第三方支付",
+          "payTime": "2026-08-03 10:25:30",
+          "wszmztDm": "02"
+        },
+        {
+          "ddbh": "20263P010000000000002",
+          "state": "已缴款",
+          "zfje": 752.8,
+          "jkfsMc": "银联缴税",
+          "payTime": "2026-07-06 15:10:02",
+          "wszmztDm": "02"
+        },
+        {
+          "ddbh": "20263P010000000000003",
+          "state": "已缴款",
+          "zfje": 3267.5,
+          "jkfsMc": "银行端查询缴款",
+          "payTime": "2026-06-09 09:40:18",
+          "wszmztDm": "02"
+        }
+      ]
+    }
+  },
+  {
+    "match": "/zs/jkpz/query",
+    "method": "post",
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        {
+          "pzMc": "2026年06月份（属期）个人所得税通用完税证明",
+          "pzztMc": "已开具",
+          "pzje": 752.8,
+          "kjrq": "2026-07-06",
+          "pzDm": "008",
+          "pzzlDm": "01"
+        },
+        {
+          "pzMc": "2026年05月份（属期）个人所得税通用完税证明",
+          "pzztMc": "已开具",
+          "pzje": 3267.5,
+          "kjrq": "2026-06-10",
+          "pzDm": "007",
+          "pzzlDm": "01"
+        }
+      ]
+    }
+  },
+  {
+    "match": "/zs/tssq/records/query",
+    "method": "post",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "records": [
+          {
+            "tdssqxh": "MOCKTDSSQ0000001",
+            "yhhbdm": "03030000",
+            "tdsjdDm": "07",
+            "tdsjdblzt": "07",
+            "tdsjdblztmc": "已退税",
+            "tdsje": 3680.0,
+            "djje": 0,
+            "tsje": 3680.0,
+            "sqrq": "2026-08-05 10:00:00",
+            "processData": []
+          },
+          {
+            "tdssqxh": "MOCKTDSSQ0000002",
+            "yhhbdm": "03030000",
+            "tdsjdDm": "06",
+            "tdsjdblzt": "04",
+            "tdsjdblztmc": "退库失败",
+            "tdsje": 1200.5,
+            "djje": 1200.5,
+            "tsje": 0,
+            "sqrq": "2026-05-20 14:30:00",
+            "processData": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "match": "/sb/yd/grsdsndzxsb/v2/cxsbxx",
+    "method": "post",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "sblsh": "MOCK202608010000000001",
+        "skssnd": "2026",
+        "nsrxxVO": {
+          "jsztDm": "02",
+          "ktse": 0,
+          "tssq": {
+            "tdssqxh": "MOCKTDSSQ0000001"
+          }
+        },
+        "grsdsndzxsbZb": {
+          "sfbhjwsd": "1",
+          "sqts": 0
+        }
+      }
+    }
+  }
+]

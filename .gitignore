@@ -7,6 +7,7 @@ reference/ipa-www/
 reference/cdn-www/
 reference/geshui-apk-unpacked/
 ios/shell/
+ios/www/
 PLAN.md
 # ── 构建产物（由 tools/build.sh 从 reference 生成，不入库）──
 web/www/
@@ -39,7 +40,25 @@ Thumbs.db
 # ── Kilo 本地工具配置（不入库）───────────────
 .kilo/
 .kilocode/
+.kilocodeignore
 KILO_REPLICA_SETUP.md
 kilo.jsonc
 kilo.json
 skills-lock.json
+web/deob/
+
+# ── 本地抓包/打包数据（含个人信息，勿入库）───
+packetSniffing/
+etax-input.zip
+reference/alternate-web/
+reference/analysis/manifest-diff.json
+
+# ── 开发截图 / IDE ───────────────────────────
+web/dev/diffs/
+.vscode/
+
+# ── cordova 生成物（CI 由 build-ipa.sh 重建）──
+ios/platforms/ios/www/
+ios/platforms/ios/platform_www/
+ios/package.json
+ios/package-lock.json

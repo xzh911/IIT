@@ -1,0 +1,5 @@
+{
+  "match": "/zh/swrysf/query",
+  "method": "get",
+  "data": { "code": "SUCCESS", "data": "N" }
+}

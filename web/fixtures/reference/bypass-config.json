@@ -1,0 +1,8 @@
+{
+  "match": "/common/flow/bypass",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": { "group": "bj", "urlList": [ "/log/app/*", "/log/web/*", "/log/khd/*", "/log/mobile/*" ] }
+  }
+}
