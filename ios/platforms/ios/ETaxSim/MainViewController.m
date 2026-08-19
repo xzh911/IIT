@@ -27,15 +27,11 @@
     [self.launchView setAlpha:1];
 }
 
-// 复刻壳适配：WebView 布局在安全区下方（与官方 App 行为一致，
-// 页面顶部渐变/搜索栏不被 iOS 状态栏遮挡）
-- (void)viewDidLayoutSubviews
+// 复刻壳适配：WebView 采用整屏 edge-to-edge（官方 App 沉浸式行为），
+// 前端 CSS env(safe-area-inset-top) 负责状态栏避让，壳不再手动下移布局
+- (UIStatusBarStyle)preferredStatusBarStyle
 {
-    [super viewDidLayoutSubviews];
-    UIEdgeInsets s = self.view.safeAreaInsets;
-    CGFloat top = s.top > 0 ? s.top : 20; // 旧机型无 safeArea 时兜底 20pt
-    CGRect b = self.view.bounds;
-    self.webView.frame = CGRectMake(0, top, b.size.width, b.size.height - top);
+    return UIStatusBarStyleLightContent;
 }
 
 @end

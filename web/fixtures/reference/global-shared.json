@@ -167,7 +167,17 @@
   "method": "get",
   "data": {
    "code": "SUCCESS",
-   "data": []
+   "data": [
+    {"value": "0100", "label": "工资薪金所得"},
+    {"value": "0200", "label": "经营所得"},
+    {"value": "0300", "label": "利息、股息、红利所得"},
+    {"value": "0400", "label": "劳务报酬所得"},
+    {"value": "0500", "label": "稿酬所得"},
+    {"value": "0600", "label": "特许权使用费所得"},
+    {"value": "0700", "label": "财产租赁所得"},
+    {"value": "0800", "label": "财产转让所得"},
+    {"value": "0900", "label": "偶然所得"}
+   ]
   }
  },
  {

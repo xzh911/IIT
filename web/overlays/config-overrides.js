@@ -13,4 +13,34 @@
     HOTUPDATE_API: '',
     source: 'mock',
   };
+  // ---- 一次性引导/提示弹窗全跳过（用户确认不需要） ----
+  // 官方 bundle 弱规则：以下 localStorage 标记为真 → 对应引导不再弹出。
+  // 首次安装欢迎轮播（welcome-page）、首页功能卡引导（租/贷/教育/赡养…）、
+  // 分类警告等。预置标记即可永久跳过；官方 clearHomeDiologFromDeclare 在
+  // 申报流程结束时会 delete 这些键，故定时重设兜底（只影响引导键，不碰业务数据）。
+  var GUIDE_KEYS = [
+    'firstEntry',
+    'rentStorageFlag',
+    'housingLoanStorageFlag',
+    'housingloanStorageFlag',
+    'educationStorageFlag',
+    'illnessStorageFlag',
+    'ContinutEducationStorageFlag',
+    'elderlyStorageFlag',
+    'advancePopStorageFlag',
+    'nonResidentPopStorageFlag',
+    'tstzbaPopShowStorageFlag',
+    'neverShowClassificationWarning'
+  ];
+  function setGuideFlags() {
+    try {
+      for (var i = 0; i < GUIDE_KEYS.length; i++) {
+        if (!localStorage.getItem(GUIDE_KEYS[i])) {
+          localStorage.setItem(GUIDE_KEYS[i], '1');
+        }
+      }
+    } catch (e) { /* 忽略存储异常 */ }
+  }
+  setGuideFlags();
+  setInterval(setGuideFlags, 3000);
 })();
