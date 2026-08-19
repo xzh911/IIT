@@ -1,6 +1,6 @@
 // ============================================================
 // O4: dev-entry.js — 隐蔽开发者入口 + /dev 数据面板（自定义层）V2
-// 触发: 「用户注册协议」/「自然人办税服务平台」连点 5 次
+// 触发: 仅首页底部 tab 栏「我的」item 连点 5 次（r8 修正，勿恢复全局文案匹配）
 // 功能:
 //   1. fixture 模式显示（reference/custom）
 //   2. 【V2】模板 + 表单编辑：选中模板 → 同一面板展示该模拟数据字段表单
@@ -470,30 +470,31 @@
   // 用 capture 阶段监听：首页/个人页等页脚文本点击会被页面组件
   // stopPropagation 截断气泡，capture 时 document 最先执行不受影响。
   // ============================================================
-  var TAP_TARGETS = ['用户注册协议', '自然人办税服务平台'];
+  // r8: 仅「首页底部 tab 栏『我的』item」连点 5 下触发（右下角），其它位置点 5 下不出现。
   var taps = 0, lastTap = 0;
+  function isMyTabItem(node) {
+    for (var i2 = 0; node && node.nodeType === 1 && i2 < 7; i2++, node = node.parentElement) {
+      if (node.className && /tabbar-item/.test(String(node.className))) {
+        // 必须在首页自身 tabbar 容器内（.zdj-home-tabbar），排除其它页同名元素
+        if (!node.closest || !node.closest('.zdj-home-tabbar')) return false;
+        return (node.textContent || '').replace(/\s+/g, '') === '我的';
+      }
+    }
+    return false;
+  }
   document.addEventListener('click', function (e) {
     var el = e.target;
     var inDialog = !!(el && el.closest && el.closest('.agreement-dialog, .zdj-confirm, .vux-x-dialog, .window-dialog-update'));
     if (inDialog) return;
-    for (var i = 0; el && el.nodeType === 1 && i < 6; i++, el = el.parentElement) {
-      var txt = (el.textContent || '').replace(/\s+/g, '');
-      var hit = false;
-      for (var t = 0; t < TAP_TARGETS.length; t++) {
-        if (txt.indexOf(TAP_TARGETS[t]) !== -1) { hit = true; break; }
-      }
-      if (hit) {
-        var now = Date.now();
-        if (now - lastTap > 2500) taps = 0;
-        lastTap = now;
-        taps += 1;
-        if (taps >= 5) {
-          taps = 0;
-          try { window.__devOpenedAt = Date.now(); openDevPanel(); }
-          catch (e) { window.__devErr = String((e && e.stack) || e); }
-        }
-        return;
-      }
+    if (!isMyTabItem(el)) return;
+    var now = Date.now();
+    if (now - lastTap > 2500) taps = 0;
+    lastTap = now;
+    taps += 1;
+    if (taps >= 5) {
+      taps = 0;
+      try { window.__devOpenedAt = Date.now(); openDevPanel(); }
+      catch (e2) { window.__devErr = String((e2 && e2.stack) || e2); }
     }
   }, true);
 

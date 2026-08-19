@@ -3,6 +3,6 @@
   "method": "get",
   "data": {
     "code": "SUCCESS",
-    "data": { "normalWdsl": 2, "swxxWdsl": 0 }
+    "data": { "normalWdsl": 0, "swxxWdsl": 0 }
   }
 }
