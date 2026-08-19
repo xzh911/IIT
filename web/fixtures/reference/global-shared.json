@@ -258,22 +258,36 @@
    "data": "3"
   }
  },
- {
-  "match": "/zrr/zjxx/list/query",
-  "method": "get",
-  "data": {
-   "code": "SUCCESS",
-   "data": []
-  }
- },
- {
-  "match": "/zh/afs/config/query",
-  "method": "get",
-  "data": {
-   "code": "SUCCESS",
-   "data": {}
-  }
- },
+{
+   "match": "/zrr/zjxx/list/query",
+   "method": "get",
+   "data": {
+    "code": "SUCCESS",
+    "data": [
+     {
+      "zjxh": "Z-CERT-001",
+      "sfzjlxMc": "居民身份证",
+      "sfzjhm": "3****************6",
+      "zzjbz": "Y",
+      "source": "mock"
+     }
+    ]
+   }
+  },
+  {
+   "match": "/zh/afs/config/query",
+   "method": "get",
+   "data": {
+    "code": "SUCCESS",
+    "data": {
+     "newAfsSwitch": "N",
+     "appKey": "nc_mocka_key",
+     "scene": "nc_login",
+     "sessionId": "MOCK-AFS-SESSION",
+     "source": "mock"
+    }
+   }
+  },
  {
   "match": "/sb/yd/tstz/tzdkba/queryTzdkBaList",
   "method": "get",

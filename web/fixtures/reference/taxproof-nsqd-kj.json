@@ -1,0 +1,11 @@
+{
+  "match": "/zrr/nsqd/kj",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "kjsqxh": "MOCK-NSQD-KJSQXH-2026-001",
+      "source": "mock"
+    }
+  }
+}

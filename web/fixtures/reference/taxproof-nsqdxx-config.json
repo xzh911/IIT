@@ -1,0 +1,11 @@
+{
+  "match": "/zrr/nsqdxx/config",
+  "method": "get",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "nssqMaxNum": "30",
+      "source": "mock"
+    }
+  }
+}

@@ -7,7 +7,7 @@
       "app.sjxx.rgx.switch": "N",
       "ZRR_IFFA_AUTH_SWITCH": "N",
       "app.aqjp.switch": "N",
-      "app.afs.switch": "N",
+      "app.afs.switch": "Y",
       "APP_ERROR_LOG_UPLOAD_SWITCH": "N",
       "newmetric.switch": "N",
       "emas.switch": "N",

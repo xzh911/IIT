@@ -47,12 +47,15 @@ html = re.sub(
     html,
 )
 
+html = re.sub(r"<script>var noCaptcha;</script>\s*<script src=\./nc\.js></script>\s*<script src=\./AliyunCaptcha\.js></script>", '', html)
+
 # 3) 注入 overlay 脚本（在 cordova.js 之前，保证 api-stub 先就绪）
 inject = (
     '<script src="./fixtures-inline.js"></script>'
     '<script src="./api-stub.js"></script>'
     '<script src="./config-overrides.js"></script>'
     '<script src="./dev-entry.js"></script><script src="./mock-login.js"></script>'
+    '<script src="./afs-slider.js"></script>'
 )
 if '<script src=./cordova.js>' in html:
     html = html.replace('<script src=./cordova.js>', inject + '<script src=./cordova.js>', 1)
@@ -77,6 +80,7 @@ cp "$OVL/api-stub.js"          "$WWW/api-stub.js"
 cp "$OVL/config-overrides.js"  "$WWW/config-overrides.js"
 cp "$OVL/dev-entry.js"         "$WWW/dev-entry.js"
 cp "$OVL/mock-login.js"        "$WWW/mock-login.js"
+cp "$OVL/afs-slider.js"        "$WWW/afs-slider.js"
 echo "[3/6] O1/O2/O4/O5 overlay 复制完成"
 
 # 非 JSON 资源（svg/png 等）复制到 static/images

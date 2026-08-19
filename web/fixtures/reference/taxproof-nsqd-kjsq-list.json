@@ -1,0 +1,12 @@
+{
+  "match": "/zrr/nsqd/kjsq/list",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "total": 0,
+      "list": [],
+      "source": "mock"
+    }
+  }
+}
