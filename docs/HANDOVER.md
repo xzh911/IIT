@@ -1,6 +1,6 @@
 # 交接文档 — 个人所得税 App 高保真复刻（新对话主入口）
 
-> **最后更新**：2026-08-18 16:53（§13：P1-3 收入明细详情已完成）
+> **最后更新**：2026-08-19 22:20（§27：真机反馈定版 + FEEDBACK 文档；§26：轮次③ dev 面板 V2）
 > **给下一个模型**：先读本文件 + 下面《0. 速览》里的 4 个文件，然后按《9. 建议开场》开始。
 > 标注：★ = 容器 WebKit 运行时**已实证**；[静态] = 混淆代码分析结论。历史细节见各引用文件。
 > 目录根：`/home/xxx/workload/IIT`
@@ -622,9 +622,9 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 >
 > 【先读这些，按序】① `docs/STATE.md`（40 行总览，唯一短状态）→ ② `docs/HANDOVER.md` §22-§25（历史定论与最新两轮）→ ③ `docs/PHASE1-REPORT.md` §5（唯一现行计划/轮次表）→ ④ `docs/WORK-REPORT-2026-08-19-task2-smallitems.md`（三小项收尾细节）。PLAN.md / PLANv4.md / docs/PLAN.md 已归档停用，勿当现行计划。
 >
-> 【当前进度（2026-08-19）】任务1（轮次①）已 push + CI 出 IPA（build #5），**待用户真机验证**（SideStore 导入反馈）；任务2 三页不空态完成；任务2 三小项（免征额 toast / 申报详情字段 / record-hub rejection）全部清零，REJS: []；**轮次③ dev 面板 V2 表单编辑器完成**（见 §26）。上一轮 5 处改动未 commit（income-config +ZS_JKJECSPZ、api-stub 动态路由 code 包装、record-tabs 时间戳改 ms、cordova hotCodeAnalytics 传 '{}'、新增 query-task-v2.json）；本轮 dev-entry.js 重写 + 临时探针清理，未 commit。
+> 【当前进度（2026-08-19 晚）】任务1（轮次①）已 push + CI 出 IPA（build #5，**真机已装 r5 并反馈**，见 §27）；任务2 三页不空态完成；三小项清零 REJS: []；**轮次③ dev 面板 V2 完成**（§26）；**真机反馈全部整理进 `docs/FEEDBACK-2026-08-19.md`**（含根因判断/难度总表/明天开工指引）。已 commit/push：5c4457a（任务2+三小项+dev面板V2）+ d2a8233（CI release 发布）→ Release `etax-sim-r5`。
 >
-> 【下一步】优先级：① 若有真机验证反馈先处理（STATE §遗留）；② 执行 PHASE1 §5 **轮次④ 20 核心页批量铺开**（10-20h，视预算）。
+> 【下一步】**按 `docs/FEEDBACK-2026-08-19.md` §7 开工指引执行**（状态栏白 → 明细页筛选项 → 首页内容层 → 滑块验证 → dev 面板 UX），先做根因已验证的低难度项；轮次④ 20 页铺开视预算。
 >
 > 【纪律】全程不 commit/push；reference/ 只读不可动；budget ~$4 紧张只做 targeted 验证（`wk web/dev/verify.js <名> 15`，不进 sweep）；>5 次工具调用的探索必须派 subagent（bundle-investigator / fixture-fixer）；混淆代码先 deob 再定位（tools/deob-export.sh）；时间字段必须 ms；fixture 必须 `{code:'SUCCESS', data:...}`。
 >
@@ -654,3 +654,16 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 - 已知环境问题（非代码）：协议页经 SPA 连续多路由切换后偶发空渲染（app-container 空）→ 探针需整页 reload 恢复（同真实重启 App）；事件时间异常（devOpenedAt=1787125714417）= 容器时钟
 
 **遗留**：queryTodoTask 点击跳转未验（既有无害）；真机验证仍待用户。未 commit/push；reference/ 未触碰。
+
+## 27. 真机反馈定版（2026-08-19 22:20 更新）— 反馈清单 + 可行性判断已入 FEEDBACK 文档
+
+**背景**：用户真机安装 r5（今天 commit 5c4457a+d2a8233 出包，Release `etax-sim-r5`），反馈 6 大块问题。**全量清单、根因判断、难度总表、明天开工指引 = `docs/FEEDBACK-2026-08-19.md`（唯一任务清单）**。本节约关键定论，细节一律看 FEEDBACK 文档。
+
+**关键定论（不重探）**：
+1. **状态栏白**：旧版 edge-to-edge 但 CSS safe-area 失效（按钮顶状态栏）→ 新版原生下移 safeArea（按钮对齐但状态栏露白）。正解 = 壳回全屏 + `viewport-fit=cover`（官方 CSS 754 处 env(safe-area-inset-top) 才能生效）+ 状态栏白字（HANDOVER §4.5 官方做法 = edge-to-edge 沉浸式，**勿学仿照版下推白条**）。
+2. **明细页无筛选项**：`common/basecode/vn/SB_NEW_SRNSMXSDXM_YDWEB`（收入类型编码）当前 mock `[]`，消费 chunk 233 按 `{value,label}` 渲染 → 筛选项/勾选/灰按钮/动态合计全灭的最可疑根因。字段形状情报已有（session2）。
+3. **滑块验证 + 生成按钮灰**：captcha/base64Image 规则按用户反馈**重开**（用户明确要滑块）；先 grep bundle「请按住滑块/拖动到最右侧/验证通过」定组件来源（自绘 vs gt3）再定 mock 策略；生成按钮 disabled 随验证状态修复。
+4. **首页**：橙铃铛滚动模块 = queryTodoTask 区（chunk 40，已 mock 2 条，滚动逻辑待确认）；2025 汇算 box = 官方首页组件（宣传页 mobilezty H5 已捕获 26KB HTML 但 JS 缺失，需 wcdn 补下或截图替代）；警示案例/公告 = tzgg lamp/rdwt/query 无 fixture（PHASE1 §3-A2 已知缺口）。
+5. **dev 面板**：入口改为「我的」5 连击（低难度）；UX 参考 `reference/alternate-web/`（8082 试用版）重设计（中难度，契约 `{match,method,data}` 不变）。
+
+**流程变更**：① `captcha` 不 mock 规则**待重开**（滑块需求）；② 真机验证循环改为「每批改动 → commit+push → CI 出 r6 → 用户 `gh release download --latest` 安装」。已授权 commit/push/release/ci（2026-08-19 用户口头授权）。

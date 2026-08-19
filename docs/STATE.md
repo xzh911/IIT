@@ -2,9 +2,9 @@
 
 完整历史见 `docs/HANDOVER.md`（§22-§25 权威）；总进度/剩余见 `docs/WORK-REPORT-2026-08-18-session3.md`；第一版检阅交付见 `docs/REVIEW-FIRST-VERSION.md`；**阶段评估/问题分类/时间表/dev 面板改进见 `docs/PHASE1-REPORT.md`（2026-08-19，§5 为唯一现行计划，PLAN.md/PLANv4.md/docs/PLAN.md 已归档）**。更新用 `/checkpoint`。
 
-## 当前状态（2026-08-19 16:20）：任务2 三页不空态 + 三小项 + 轮次③ dev 面板 V2 全部完成；未 commit/push
+## 当前状态（2026-08-19 22:10）：任务2 + 三小项 + 轮次③ dev 面板 V2 + **真机反馈已收到并整理**（见 FEEDBACK-2026-08-19）；未 commit/push
 
-## 任务2 三小项（本轮，未 commit/push）→ 详见 docs/WORK-REPORT-2026-08-19-task2-smallitems.md
+## 任务2 三小项（本轮，未 commit/push）→ 详见 docs/WORK-REPORT-2026-08-19-task2-smallitems.md；**真机反馈见 docs/FEEDBACK-2026-08-19.md**
 - ① 免征额 toast 消失：income-config.json +`ZS_JKJECSPZ:60000`（标量，消费端 z0WU.js:474 getExemptionFromQuota 按 key 取标量比较）
 - ② 申报详情字段全渲染（年度 2026/期 2026-01~2026-12/朝阳区税务局/北京示例科技）：根因=api-stub 动态路由（globalsystemtime+jbxx）裸 data 无 code 包装 → 拦截器拒 → getJbxx().then 门控断 → cxYsbxx 从未发；已包装 + record-tabs.json 时间戳改 ms（setFormatSkssq 用 Number()+moment，字符串=Invalid date 静默错）
 - ③ rejection 清零 REJS:[]：主因同②；连带修 hotCodeAnalytics stub 传 JSON 字符串 '{}'（app 端 JSON.parse 结果，传对象=[object Object] 崩）+ 新 fixture query-task-v2.json（queryTaskListV2→POST zrr/task/queryTodoTask，chunk 40 matterList=_$nD['content'] 无 null 守卫）
@@ -16,9 +16,9 @@
 - 验收（devpanel_v2_probe）：panel1/2/3=true；收入 99999.00/V2测试科技有限公司 ✓；姓名 赵云测试 即时生效 + etax_global_state.userName 落盘 ✓；完税证明 sjtse/pzje=3000 渲染 ✓；smoke hit=17 miss=1 blocked=0 outbound=0
 - 关键坑：姓名保存读 work.data（非 work.data.data）；overrides 优先于 fixtures；SPA 多路由切换后协议页偶发空渲染需整页 reload（同真实重启）；事件时间异常=容器时钟，无关
 
-## 任务1（已完成）：轮次①已 push + CI 出包，待真机验证
+## 任务1（已完成）：轮次①已 push + CI 出包，真机已验证（反馈→FEEDBACK-2026-08-19）
 - **CI 出包成功**：commit 73bf97b push main → Actions build #5 通过（1m25s）→ artifact `etax-sim-ipa` 33MB 已下载至 `/tmp/kilo/etax-sim/etax-sim-ipa/etax-sim.ipa`；Info.plist 显示名「个人所得税」✅；AppIcon=官方 CgBI 蓝色 ✅
-- **待用户真机验证**：SideStore 导入 → 首页 5s 出内容无黑框/无「很抱歉」→ 顶部搜索不遮安全区 → 图标蓝色 → 反馈后 STATE 按 §23 更新
+- **真机验证已收到反馈（08-19 晚，装 r5 后）**：状态栏白/明细页筛选项缺/首页内容缺/滑块验证/dev 面板入口 → 全部整理进 FEEDBACK-2026-08-19.md（含可行性判断，§6 总表 + §7 开工指引）
 - **可演示基线**：smoke hit=14 miss=0 blocked=0，outbound=0；8088 常驻正常
 - **本轮完成**：App 名统一；REVIEW 18 张截图标注全补（18/18）；税收优惠备案补 1 条（`GET /sb/yd/yh/ssjm/sq/list`，赡养老人/生效渲染 ✅）；**IPA 路线 B 就绪**（ios/config.xml + platforms cordova-ios@7.1.1 + build-ipa.sh 免签 + build-ios.yml）
 - **关键定论**：官方壳全部 Mach-O **cryptid=1 FairPlay 加密** → 官方壳复用废弃；自建壳零原生插件，cordova.js 用 mock（api-stub 零外联核心）
@@ -30,7 +30,7 @@
 ## 遗留（优先级序）
 1. **用户动作（真机验证）**：下载 artifact（gh run download 32177140012）→ SideStore 导入安装 → 按清单验证首页/黑框/安全区/图标/tab
 2. 若 SideStore 拒绝免签包：兜底 `codesign -s -`（Xcode 自带 ad-hoc）需用户加一行到 build-ipa.sh；真机验证后才能定论
-3. **下一步轮次**：PHASE1 §5 轮次④ 20 核心页铺开（可选，10-20h）；轮次③ dev 面板 V2 已完成（HANDOVER §26）
+3. **下一步**：按 docs/FEEDBACK-2026-08-19.md §7 开工指引执行；轮次③已完成，轮次④ 20 页铺开按预算
 4. 真机状态栏/安全区像素对齐（规则 §11）；启动图仍默认（图标已换官方蓝标）
 5. 已知无害遗留：`swws/updateswwsydzt` miss 兜底；`queryTodoTask` 点击跳转未验；budget ~$4 紧，只做 targeted 验证
 
