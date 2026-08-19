@@ -2,14 +2,20 @@
 
 完整历史见 `docs/HANDOVER.md`（§22-§25 权威）；总进度/剩余见 `docs/WORK-REPORT-2026-08-18-session3.md`；第一版检阅交付见 `docs/REVIEW-FIRST-VERSION.md`；**阶段评估/问题分类/时间表/dev 面板改进见 `docs/PHASE1-REPORT.md`（2026-08-19，§5 为唯一现行计划，PLAN.md/PLANv4.md/docs/PLAN.md 已归档）**。更新用 `/checkpoint`。
 
-## 当前状态（2026-08-19 22:15）：任务2 + 三小项 + 轮次③ dev 面板 V2 + **真机反馈修复批次 r6（状态栏/筛选项/引导跳过）**；未 commit/push
+## 当前状态（2026-08-19 22:25）：任务2 + 三小项 + 轮次③ dev 面板 V2 + **r6 真机验证返工 → r7 修复批次（.ios 类补挂 + 消息标注删除）**；未 commit/push
 
-## r6 修复批次（本轮，未 commit/push）→ 依据 FEEDBACK-2026-08-19 §1/§2 + 会话即时反馈
-- **状态栏白**：MainViewController.m 删 viewDidLayoutSubviews 手动下移（恢复官方 edge-to-edge，前端 CSS safe-area 兜底）+ preferredStatusBarStyle=LightContent + Info.plist UIViewControllerBasedStatusBarAppearance true
-- **筛选项缺失**：global-shared.json 的 SB_NEW_SRNSMXSDXM_YDWEB data [] → 9 项（0100工资薪金/0200经营/0300利息股息红利/0400劳务/0500稿酬/0600特许权使用费/0700财产租赁/0800财产转让/0900偶然）；消费端 chunk 233 默认勾四类(0100/0400/0500/0600)+「其他类型」展开；taxRecordList kzzd 静态全量（降级）已确认可接受
-- **一次性引导全跳过**（用户不需要）：config-overrides.js 预置 firstEntry + 10 个 *StorageFlag/neverShowClassificationWarning（定时重设兜 clearHomeDiologFromDeclare）；评分弹窗由服务端 needShowRate 驱动 mock 不弹；版本更新弹窗 mock 不触发
-- 验证：income_filter_probe 4 步全绿（含勾选经营所得→taxRecordList 渲染）；guide_skip_probe hasWelcome=false 直达 #/zdj-home；smoke hit=19 miss=1 blocked=0 outbound=0 无回归；build 成功
-- 已知：容器截图恒显示 welcome 引导旧帧（WebKit 合成缓存，DOM 断言为准）；PE:Unhandled Promise Rejection 为既有噪音
+## r7 修复批次（本轮，未 commit/push）→ 用户真机验证 r6 反馈：状态栏重叠复现（第一版问题）
+- **根因（已实锤）**：官方 CSS 安全区避让全部挂在 `.ios` 前缀（`[data-dpr="1"] .ios .zdj-header{height:calc(env(safe-area-inset-top)*1*1 + 1.17333rem)}`），bundle 只自动加 harmony/no-notch 类，**`.ios` 类由官方原生壳注入**；复刻壳零注入 → 规则全灭 → 顶部内容顶穿状态栏（r6 复现 r1 重叠）。r5 的「下移 WebView」是对症下药遮蔽此根因的错误体位（状态栏露白）
+- **Fix C**：config-overrides.js 按 UA 补挂 body.ios 类（容器已证 body class 含 ios；CSS 规则验证命中；env()=0 容器无法显示真机效果，真机裁决）
+- **Fix D**：message-detail.json 删「（本消息为离线复刻演示 mock 内容，非官方推送）」标注（用户明确不想要）
+- 验证：guide_skip hasWelcome=false；income_filter 4 步全绿；smoke hit=19 miss=1 blocked=0 无回归
+- 官方行为第一性：edge-to-edge + viewport-fit=cover + .ios 类安全区避让 + 白字（HANDOVER §4.5 定论）
+
+## r6 修复批次（已 push ba00546，Release etax-sim-r6 真机验证未通过）
+- **状态栏**：MainViewController.m 删 viewDidLayoutSubviews 手动下移（恢复官方 edge-to-edge，前端 CSS safe-area 兜底）+ preferredStatusBarStyle=LightContent + Info.plist UIViewControllerBasedStatusBarAppearance true
+- **筛选项**：global-shared.json 的 SB_NEW_SRNSMXSDXM_YDWEB 9 项（0100工资薪金/0200经营/0300利息股息红利/0400劳务/0500稿酬/0600特许权使用费/0700财产租赁/0800财产转让/0900偶然）；消费端 chunk 233 默认勾四类(0100/0400/0500/0600)+其他类型展开；taxRecordList kzzd 静态全量（降级）已确认可接受
+- **一次性引导跳过**：config-overrides.js 预置 firstEntry + 10 个 *StorageFlag/neverShowClassificationWarning（定时重设兜 clearHomeDiologFromDeclare）
+- 验证：income_filter_probe 4 步全绿；guide_skip hasWelcome=false；smoke hit=19 miss=1 blocked=0；build 成功
 
 ## 任务2 三小项（轮次③，已 commit 5c4457a）→ 详见 docs/WORK-REPORT-2026-08-19-task2-smallitems.md；**真机反馈见 docs/FEEDBACK-2026-08-19.md**
 - ① 免征额 toast 消失：income-config.json +`ZS_JKJECSPZ:60000`（标量，消费端 z0WU.js:474 getExemptionFromQuota 按 key 取标量比较）

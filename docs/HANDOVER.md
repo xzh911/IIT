@@ -667,3 +667,38 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 5. **dev 面板**：入口改为「我的」5 连击（低难度）；UX 参考 `reference/alternate-web/`（8082 试用版）重设计（中难度，契约 `{match,method,data}` 不变）。
 
 **流程变更**：① `captcha` 不 mock 规则**待重开**（滑块需求）；② 真机验证循环改为「每批改动 → commit+push → CI 出 r6 → 用户 `gh release download --latest` 安装」。已授权 commit/push/release/ci（2026-08-19 用户口头授权）。
+
+## 28. r6 修复批次（2026-08-19 22:30）— 状态栏 + 筛选项 + 一次性引导（已 push，Release etax-sim-r6）
+
+**背景**：按 FEEDBACK §7 顺序开工，第一批 = §1（状态栏）+ §2（明细页筛选项）+ 会话即时反馈（一次性引导跳过）。commit `ba00546` → CI build #32261995307 ✓（1m39s）→ Release `etax-sim-r6`（未验证真机）。
+
+**改动清单**：
+1. **状态栏（Fix A）**：`ios/platforms/ios/ETaxSim/MainViewController.m` 删 `viewDidLayoutSubviews` 手动下移 override（恢复官方 edge-to-edge，前端 CSS safe-area 兜底 + viewport-fit=cover 构建未丢）+ `preferredStatusBarStyle=LightContent`；`ETaxSim-Info.plist` `UIViewControllerBasedStatusBarAppearance` false→true。真机验收：蓝渐变顶到状态栏 + 白字 + 搜索框不被压。
+2. **筛选项（Fix B）**：`web/fixtures/reference/global-shared.json` 的 `SB_NEW_SRNSMXSDXM_YDWEB` data [] → 9 项 `{value,label}`（0100工资薪金/0200经营/0300利息股息红利/0400劳务/0500稿酬/0600特许权使用费/0700财产租赁/0800财产转让/0900偶然）。消费端 chunk 233 已实证：默认勾 fourKeyList=`["0100","0400","0500","0600"]`；label 截尾规则只放行 0200 与 1000 前缀（实验确认「偶然所得」显示为「偶然」）；跳转 `kzzd=sdnd|incomeModel.join(",")` 走 store incomeObj → `cxNsmxList` 请求体 `sdxmDms`（chunk 272 实证）。**降级决策**：静态 fixture 不分 body → 列表显示全量记录（勾选过滤不生效但不崩，第二版用 DYNAMIC 按 kzzd 前缀过滤）。
+3. **一次性引导全跳过**：`web/overlays/config-overrides.js` 预置 11 个 localStorage 标记（firstEntry + 10 个 *StorageFlag/neverShowClassificationWarning）+ setInterval 3s 重设兜底（官方 clearHomeDiologFromDeclare 会 delete）。评分弹窗 needShowRate 服务端驱动 mock 不弹；版本更新弹窗 mock 不触发；协议同意保留。
+
+**验证（容器实证）**：
+- `income_filter_probe` 4 步全绿：四默认类勾选+btnEnabled → 展开其他类型 5 项 → 勾经营所得 → taxRecordList 渲染（收入合计 157600.00/已申报 13487.99 + 记录列表）
+- `guide_skip_probe`：firstEntry=1 + hasWelcome=false，直达 `#/zdj-home`，10 flag 全置位
+- smoke：hit=19 miss=1 blocked=0 outbound=0（miss=querymycygnlb 既有）
+- 坑：容器 WebKit 截图恒为 welcome 引导旧帧（合成缓存？DOM 断言为准）；PE:Unhandled Promise Rejection 为既有噪音
+
+**遗留**：真机验证 r6（gh release download --latest）；taxRecordList 动态过滤；滑块验证码；首页 2025 汇算 box/公告轮播；dev 面板入口改「我的」5 连击。budget 紧，targeted 验证不 sweep。
+
+## 29. r7 修复批次（2026-08-19 22:30）— 状态栏重叠复现根因：.ios 类缺失（用户 r6 真机验证未过）
+
+**背景**：用户装 r6 反馈「状态栏重叠复现，搜索栏/左上角返回/扫码图标完全点不到」= r1 同一故障。之前 r5 的「壳下移」只是把症状藏到状态栏下面（露出白条），删除下移后必须还原真实机制。
+
+**根因（已实锤，勿重探）**：
+- 官方 CSS 安全区避让**全部**挂在 `.ios`/`.harmony` 前缀选择器下：`[data-dpr="1"] .ios .zdj-header{height:calc(env(safe-area-inset-top)*1*1 + 1.17333rem)}`、`padding-top:calc(env(...)*1*1)` 等（容器实测 body 无 .ios 时搜索框 top=5px 贴顶、header 高度 33px；补 .ios 后规则命中）。
+- bundle 内唯一动态加类 = `isHarmony && body.classList.add('harmony')`（fDMi 模块）＋ sdk.js 的 `no-notch` toggle；**没有任何代码添加 `.ios`**——官方真机上的 `.ios` class 由官方原生壳/页面注入完成（官方 web 资产+原生壳一体化）。
+- 复刻自建壳零注入 → 所有安全区规则失配 → 页面顶部元素直接顶进状态栏。r5 的 `viewDidLayoutSubviews` 下移是绕开症状的错误解（顶按钮解了但状态栏露白）；r6 删除下移却没补 .ios 注入（重叠复现）。
+
+**修复（Fix C + D，均 overlay/fixture，web 层）**：
+1. `web/overlays/config-overrides.js`：UA 匹配 iPhone/iPod 时 `document.body.classList.add('ios')`（容器已证 body class 含 ios + CSS 规则命中；`env()` 容器为 0 无法复现真机像素，真机裁决）。
+2. `web/fixtures/reference/message-detail.json`：删消息正文尾部「（本消息为离线复刻演示 mock 内容，非官方推送）」灰注（用户不需要）。
+
+**官方行为第一性（HANDOVER §4.5 既有定论，本次被验证）**：edge-to-edge（StatusBarOverlaysWebView=true）＋ viewport-fit=cover（官方/css 均已带）＋ `.ios` 类安全区避让＋ `preferredStatusBarStyle=LightContent` 白字。三层缺一即症状复现。
+
+**验证**：guide_skip hasWelcome=false；income_filter 4 步全绿；smoke hit=19 miss=1 blocked=0；build 通过。
+**遗留**：真机验证 r7；taxRecordList 动态过滤；滑块验证码；首页内容层；dev 面板入口。

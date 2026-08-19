@@ -13,6 +13,17 @@
     HOTUPDATE_API: '',
     source: 'mock',
   };
+
+  // ---- 平台类标记（复刻壳必需）----
+  // 官方 CSS 全部安全区规则挂在 .ios/.harmony 前缀下（如 .ios .zdj-header{height:calc(env(safe-area-inset-top)*1*1 + 1.17333rem)}），
+  // bundle 只在鸿蒙分支 add('harmony')，iOS 分支由官方原生壳/页面注入完成。复刻壳无此注入 → 安全区规则全灭 → 顶部内容顶穿状态栏。
+  // 这里按 UA 补挂 .ios，恢复官方 CSS 安全区避让（配合 viewport-fit=cover + 壳 edge-to-edge）。
+  try {
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent || '')) {
+      document.body.classList.add('ios');
+    }
+  } catch (e) { /* 忽略 */ }
+
   // ---- 一次性引导/提示弹窗全跳过（用户确认不需要） ----
   // 官方 bundle 弱规则：以下 localStorage 标记为真 → 对应引导不再弹出。
   // 首次安装欢迎轮播（welcome-page）、首页功能卡引导（租/贷/教育/赡养…）、
