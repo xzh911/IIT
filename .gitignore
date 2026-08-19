@@ -16,6 +16,8 @@ ios/out/
 node_modules/
 
 # ── 密钥与签名凭据 ──────────────────────────────
+.codex/
+.agents
 .env
 *.p12
 *.p8

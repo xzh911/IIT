@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -38,3 +40,15 @@ jobs:
           name: etax-sim-ipa
           path: ios/out/etax-sim.ipa
           if-no-files-found: error
+
+      - name: 发布 IPA 到 GitHub Release
+        # 每次构建发一个新 release（tag 递增），可用 gh release download --latest 拉最新
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="etax-sim-r${{ github.run_number }}"
+          gh release create "$TAG" ios/out/etax-sim.ipa \
+            -R "${{ github.repository }}" \
+            --title "etax-sim IPA r${{ github.run_number }}" \
+            --notes "免签 IPA（SideStore 安装，测试/复刻用途）。$(date -u '+%Y-%m-%d %H:%M UTC') · commit ${{ github.sha }}"
