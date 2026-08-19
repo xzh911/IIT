@@ -78,7 +78,7 @@
     {
       match: 'common/system/globalsystemtime',
       data: function () {
-        return Date.now();
+        return { code: 'SUCCESS', data: Date.now() };
       },
     },
     {
@@ -96,12 +96,15 @@
         var gs = {};
         try { gs = JSON.parse(localStorage.getItem('etax_global_state') || '{}'); } catch (e) {}
         return {
-          xm: gs.userName || '张伟',
-          sfzjhm: '110101199001011234',
-          nsrsbh: '110101199001011234',
-          sfzjlxMc: '居民身份证',
-          xbDm: ['1'],
-          source: 'mock',
+          code: 'SUCCESS',
+          data: {
+            xm: gs.userName || '张伟',
+            sfzjhm: '110101199001011234',
+            nsrsbh: '110101199001011234',
+            sfzjlxMc: '居民身份证',
+            xbDm: ['1'],
+            source: 'mock',
+          },
         };
       },
     },

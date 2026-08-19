@@ -60,6 +60,8 @@
         vibrate: noop,
         makePhoneCall: noop,
         openSettings: noop,
+        startEnvDetection: function (s, f) { s && s({}); },
+        appOnCreate: function (s, f) { s && s({}); },
       },
       imageResizer: { resizeImage: noop },
       photoGallery: { saveImageToGallery: noop },
@@ -137,6 +139,7 @@
   window.plugins.sim = window.plugins.sim || {
     getSimInfo: function (cb) { cb && cb({ phoneNumber: '', countryCode: '86' }); },
   };
+  window.plugins.NativeAnalytics = { init: noop, onPageStart: noop, onPageEnd: noop, logEvent: noop };
   window.plugins.LaunchHotCode = {
     launch: noop,
     getConfig: function (cb) { cb && cb({}); },
@@ -146,6 +149,9 @@
     checkUpdateStatus: function (o, cb) { cb && cb({ status: 'none' }); },
   };
   window.plugins.hotCode = window.plugins.LaunchHotCode;
+  // 注意: app 端 $native.LaunchHotCode.hotCodeAnalytics 是 Promise 包装, 会对回调结果 JSON.parse
+  // 必须传 JSON 字符串, 不能传对象 (对象会被 String() 成 "[object Object]" 导致 parse 崩)
+  window.plugins.LaunchHotCode.hotCodeAnalytics = function (o, s, f) { s && s('{}'); };
 
   var fired = false;
   function fireDeviceReady() {

@@ -85,6 +85,19 @@
         ui.nsrsbhNoHide = USER.nsrsbh;
         store.commit('@USER/COPY_USERINFO_ORIGINAL_DATA');
       }
+      // 申报记录页（/declaration_record_general）直开兜底：
+      // 官方 App 仅从申报详情入口 commit recordStore 后再跳转，直开路由时
+      // store 为空 → 不拉数。这里预置 mock 申报标识（source:mock），
+      // 使直开也能渲染申报详情（自定义层，仅当 recordYwlxdm 为空时写入）。
+      var rs = store.state.recordStore;
+      if (rs && !rs.recordYwlxdm) {
+        try {
+          store.commit('recordSblsh', 'MOCK202608010000000001');
+          store.commit('recordSbxh', 'MOCK202608010000000001');
+          store.commit('recordYwlxdm', 'A061009014');
+          store.commit('tabIndex', 0);
+        } catch (e2) {}
+      }
     } catch (e) {
       if (window.__ETAX_STUB_DEBUG__) console.log('[mock-login]', String(e).slice(0, 120));
     }

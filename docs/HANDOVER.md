@@ -30,7 +30,7 @@ node tools/api-fields.js <接口路径>      # 从混淆代码提取 API 附近�
 > **注意**：8088 静态服务（`web/dev/serve.sh`）在会话间会挂，新会话要用 `background_process` 工具重启：`bash web/dev/serve.sh 8088`（工作目录项目根，ready 检测 port 8088）。容器 `wk` 每次新会话需拉起（wrapper 自动）。
 
 **本会话已建立、新会话要保留的关键文件**：
-- `docs/PROGRESS-REPORT.md`（进度总览）、`docs/API-UI-IMPACT.md`（API↔UI 影响表，最常用）、`docs/STAGE-REPORT.md`（阶段评估）、`PLANv4.md`（执行计划）、`web/dev/diffs/sweep-report.json`（最近巡检 miss 汇总）
+- `docs/PROGRESS-REPORT.md`（进度总览）、`docs/API-UI-IMPACT.md`（API↔UI 影响表，最常用）、`docs/STAGE-REPORT.md`（阶段评估）、`PLANv4.md`（~~执行计划~~，**已归档，现行计划=docs/PHASE1-REPORT.md §5**）、`web/dev/diffs/sweep-report.json`（最近巡检 miss 汇总）
 - 全 repo 仅 1 个 commit（init），所有工作文件未提交——**不要随便 commit/push**（用户在推进中）。
 
 ---
@@ -577,3 +577,80 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 - **App 名统一**：根/ios/config.xml + platforms ios config.xml + Info.plist 全部「个人所得税」
 
 **待真机验证清单（§23 预期）**：SideStore 导入 → 首页 5s 出内容无黑框/无「很抱歉」→ 顶部搜索不遮安全区 → 图标蓝色 → 5 tab 可切换 → 反馈后更新 §23
+
+## 23. 任务2 完成（2026-08-19 14:00 更新）— 三页不空态验证通过，未 commit/push
+> 详情见 `docs/WORK-REPORT-2026-08-19-task2.md`（含逐页根因/踩坑/工作量评估）；验证管线：build.sh + `wk __probe/task2_probe.js`（5 路由探针）。
+
+**本轮改动（4 文件，未 commit）**：
+- `web/fixtures/reference/swws-message.json`（新）：`swws/list/query`×2（cllx=2 待办/1 已处理）、`swws/sign/status/query`（qdzt=1）、`swws/content/query`、`swws/sign` → 消息列表 PAGEERROR 修复
+- `web/fixtures/reference/global-shared.json`：`fpTtxxList` +2 条抬头（本人张伟 brtt/mrtt=Y；单位 91110108MOCK00000X）；`swws/mx/find` 补全详情（wsbt/sdsj/content/tips/bjzt/button/images）→ 发票抬头/扫码开票/消息详情空态修复
+- `web/fixtures/reference/record-tabs.json`：+`POST sb/yd/grsdsndzxsb/cxYsbxx` fixture
+- `web/overlays/mock-login.js`：+recordStore 预置（recordSblsh/Sbxh/Ywlxdm=A061009014/tabIndex=0，无 namespace mutations 名，boot 单次执行）→ 申报记录直开不空态
+- 新增探针 `__probe/task2_probe.js`（5 路由 + DOM 摘要 + stub 日志 + 截图 web/dev/diffs/task2-*.png）
+
+**验证结果（修复后）**：msg-list 待办/已签收渲染 ✅；msg-detail 全文渲染 ✅；invoice-title 2 条抬头+默认标 ✅；scan-code 选择列表 ✅；record-hub 直开 → replace `/ndhsqj` → 缴款汇总渲染 ✅。miss 仅剩 `swws/updateswwsydzt`（无害兜底）。
+
+**遗留 3 小项（下会话，2-4h）**：
+1. 全页 toast「查询免征额出错！」：checkPayTaxBtnAvailable（V2jO.js:620 + chunk283 2 处）→ 免征额接口未确认（0.5-1h）
+2. 申报详情「税款所属年度/期/汇算地」空：实际请求 cxCsnrList×2+jbxx×2，**cxYsbxx 未发出**（chunk 73 假设证伪，按实际链对齐字段 1-2h）
+3. record-hub Unhandled Promise Rejection [object Object]（0.5-1h）
+
+**踩坑速记**：① 零 miss 兜底 data:null → .forEach PAGEERROR，miss 不总是无害 ② hit 但形状错（空数组/{}）→ 空态，stub 日志 hit 不等于渲染成功 ③ 子路由 replace 型 hub 须 probe 父路由 ④ store 预置注入须 app 初始化后且 boot 单次 ⑤ fixture method 须与实际一致（POST/GET）
+
+**后续轮次工作量（更新 PHASE1 §5）**：真机验证（用户动作，agent 0h）；轮次② 验证码+图标 0.5-1h（图标 CI 转换已在任务1 完成验证）；轮次③ dev 面板 V2 表单编辑器 ~6h；轮次④ 20 页铺开 10-20h（可砍核心 8-10 页 ≈6-10h）；REVIEW 🟡3 页打磨 1.5-3h。**建议顺序：三小项（2-4h）→ dev 面板 V2（6h）→ 视预算铺开**。
+
+## 25. 任务2 遗留三小项收尾完成（2026-08-19 15:00 更新）— 三小项清零，REJS: []，未 commit/push
+> 详情见 `docs/WORK-REPORT-2026-08-19-task2-smallitems.md`；验证管线：build.sh + `wk __probe/task2_probe.js` / `wk __probe/task17_rejstack.js`。
+
+**本轮改动（5 文件，未 commit）**：
+- `web/fixtures/reference/income-config.json`：+`"ZS_JKJECSPZ": 60000`（标量）→ 免征额 toast 消失
+- `web/overlays/api-stub.js`：`common/system/globalsystemtime` + `zrr/jbxx/query` 动态路由 data 改 `{code:'SUCCESS', data:...}` 包装 → 拦截器不再拒
+- `web/fixtures/reference/record-tabs.json`：`grsdsndzxsbZb.skssqq/skssqz` 改 ms 时间戳（1767196800000/1798732799000）
+- `web/overlays/cordova.js`：`LaunchHotCode.hotCodeAnalytics` 成功回调改传 `'{}'`（JSON 字符串；app 端 `JSON.parse` 回调结果）
+- `web/fixtures/reference/query-task-v2.json`（新）：`POST zrr/task/queryTodoTask` 2 条（taskTitle/taskLxDm）
+
+**三小项定论（修正 §23 遗留）**：
+1. 免征额 toast：`checkPayTaxBtnAvailable`（V2jO.js:620）→ `z0WU.js:474 getExemptionFromQuota` → `GET_CSNR_BY_DM({csdm:'ZS_JKJECSPZ'})`，fixture map 缺 key → toast。**消费端取标量数值**。
+2. 申报详情空字段：**§23 的"cxYsbxx 未发出已证伪"结论反转过**——cxYsbxx 未发是因为上游 `getJbxx().then(getDeclareDetailData)` 门控被动态路由裸 data 的拦截器拒打断，不是"不走 cxYsbxx"。包装后 cxYsbxx 发出、全字段渲染（2026/2026-01/2026-12/朝阳区税务局/北京示例科技）。时间字段必须 ms（`setFormatSkssq` 做 `Number()+moment`，字符串 → "Invalid date" 静默错）。
+3. record-hub rejection：主因同 ②；连带修 ①hotCodeAnalytics 传对象→`String({})`="[object Object]"→`JSON.parse` 崩（**mock 回调传值类型必须匹配消费端**）；②boot 期 chunk 40 `matterList=_$nD['content']` 无 null 守卫，`queryTaskListV2`→实际 URL `POST zrr/task/queryTodoTask` miss → 兜底 null 崩，新 fixture 修复。终验 **REJS: []**。
+
+**收尾后剩余（下一步）**：PHASE1 §5 轮次③ dev 面板 V2 表单编辑器（~6h，开场白见 §24）；真机验证（用户动作）；无害遗留 `swws/updateswwsydzt`、queryTodoTask 点击跳转未验。未 commit/push；reference/ 未触碰。PLAN.md / PLANv4.md / docs/PLAN.md 已加归档横幅（现行计划唯一 = PHASE1-REPORT §5）。
+
+## 24. 下会话开场白（复制即用，2026-08-19 16:00 更新）
+
+> 【项目定位】本仓库 = 官方「个人所得税」iOS App 的高保真复刻：官方 CDN www 基线（reference/cdn-www，只读证据）+ 混淆 Vue2 bundle（web/www 构建产物）+ Cordova mock（web/overlays/）+ fixture 数据层（web/fixtures/reference/）。目标：离线零外联、可自定义数据、隐蔽 dev 入口。
+>
+> 【先读这些，按序】① `docs/STATE.md`（40 行总览，唯一短状态）→ ② `docs/HANDOVER.md` §22-§25（历史定论与最新两轮）→ ③ `docs/PHASE1-REPORT.md` §5（唯一现行计划/轮次表）→ ④ `docs/WORK-REPORT-2026-08-19-task2-smallitems.md`（三小项收尾细节）。PLAN.md / PLANv4.md / docs/PLAN.md 已归档停用，勿当现行计划。
+>
+> 【当前进度（2026-08-19）】任务1（轮次①）已 push + CI 出 IPA（build #5），**待用户真机验证**（SideStore 导入反馈）；任务2 三页不空态完成；任务2 三小项（免征额 toast / 申报详情字段 / record-hub rejection）全部清零，REJS: []；**轮次③ dev 面板 V2 表单编辑器完成**（见 §26）。上一轮 5 处改动未 commit（income-config +ZS_JKJECSPZ、api-stub 动态路由 code 包装、record-tabs 时间戳改 ms、cordova hotCodeAnalytics 传 '{}'、新增 query-task-v2.json）；本轮 dev-entry.js 重写 + 临时探针清理，未 commit。
+>
+> 【下一步】优先级：① 若有真机验证反馈先处理（STATE §遗留）；② 执行 PHASE1 §5 **轮次④ 20 核心页批量铺开**（10-20h，视预算）。
+>
+> 【纪律】全程不 commit/push；reference/ 只读不可动；budget ~$4 紧张只做 targeted 验证（`wk web/dev/verify.js <名> 15`，不进 sweep）；>5 次工具调用的探索必须派 subagent（bundle-investigator / fixture-fixer）；混淆代码先 deob 再定位（tools/deob-export.sh）；时间字段必须 ms；fixture 必须 `{code:'SUCCESS', data:...}`。
+>
+> 验证管线：`bash web/build.sh` → `wk __probe/<名>_probe.js 15`（或 verify.js）。8088 服务：`background_process bash web/dev/serve.sh 8088`。
+
+## 26. 轮次③ dev 面板 V2 完成（2026-08-19 16:20 更新）— 表单编辑器端到端验收通过，未 commit/push
+
+**交付**：`web/overlays/dev-entry.js` 重写（32KB，16:04），构建已进 web/www；验收探针 `__probe/devpanel_v2_probe.js`（唯一保留探针，临时 6 个 devpanel_* 已删）；证据：`web/dev/diffs/devpanel-v2-report.json` + 6 张截图（income/user/taxproof × form/result）。
+
+**V2 功能**：
+1. **模板 + 表单编辑**：6 模板（user/tax-records/taxproof 等）→ 选中后同面板渲染字段表单（姓名/金额/日期…），改完保存写覆盖层
+2. **通用路由字段编辑器**：任一路由展开编辑 data 每字段；`schemaOf` 类型推导（string/number/boolean/arrayPrim/object/arrayObj）→ 嵌套对象分组蓝边、数组项 #idx 编辑/删除/＋添加、逗号分隔原语数组
+3. 原始 JSON 编辑器 / 复制 / 清空 + 全局状态字段 + 日志查看
+4. 控件 data 钩子：`[data-tpl]`、`[data-route-match]/[data-route-method]`、`input[data-fkey]`、`[data-arr-idx]`
+
+**契约与入口**：覆盖层 `{match, method, data}`（data=完整 `{code:'SUCCESS',...}`），存 `localStorage['etax_custom_overrides']`，优先于 fixtures/dynamic。5 连击入口 = capture 阶段 click 监听（页面组件 stopPropagation 会截断冒泡），命中「用户注册协议」/「自然人办税服务平台」，2.5s 窗口 5 次；`.agreement-dialog/.zdj-confirm/.vux-x-dialog/.window-dialog-update` 弹窗内点击被 inDialog 排除（首页/个人页隐藏弹窗内容不生效）。
+
+**验收证据（全部实证）**：
+- devpanel_v2_probe：panel1/2/3=true；income 表单 sre=99999 + kjywrMc=V2测试科技有限公司 → 收入页显示 99999.00/收款人 ✓；name 表单 xm=赵云测试 → 我的页「赵云测试」+ `etax_global_state.userName` 落盘 ✓（report json `state.overrides` 含 jbxx/query 完整覆盖层）；taxproof 表单 sjtse/pzje=3000 → 完税证明页渲染 ✓
+- gs 测试（已删）：姓名保存 userName=独立测试 写入稳定 → `applyUserNameLive` 修复确认
+- smoke 回归：hit=17 miss=1 blocked=0，outbound=0（既有 2 个页面错误为 aliyunpush TypeError / undefined Promise rejection，非本次引入）
+
+**本轮修的坑**：
+- `applyUserNameLive` 读 `work.data`（**不是** `work.data.data`）→ 写 `etax_global_state.userName` + store dispatch（@USER/SET_BASE_INFO 等）姓名即时生效
+- `showToast` 提为模块级（面板局部函数被模块级 renderRouteForm/gotoRoute 调用会 ReferenceError）；修 renderNodeInto 重复 case SyntaxError
+- 调试标记（`__devErr/__gsDbg/__devOpenedAt`）已全清（grep 确认）
+- 已知环境问题（非代码）：协议页经 SPA 连续多路由切换后偶发空渲染（app-container 空）→ 探针需整页 reload 恢复（同真实重启 App）；事件时间异常（devOpenedAt=1787125714417）= 容器时钟
+
+**遗留**：queryTodoTask 点击跳转未验（既有无害）；真机验证仍待用户。未 commit/push；reference/ 未触碰。

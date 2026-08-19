@@ -1,0 +1,59 @@
+[
+  {
+    "match": "/commonbusiness/swws/list/query",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        {
+          "wsxh": "MOCKWS202608010001",
+          "wslx": "BDA1220074",
+          "wsbt": "关于您的个人所得税综合所得年度汇算的税务事项通知书",
+          "sdsj": "2026-08-01 10:30:00",
+          "sdfs": "电子送达",
+          "cllx": "2"
+        },
+        {
+          "wsxh": "MOCKWS202608010002",
+          "wslx": "BDA1220324",
+          "wsbt": "个人所得税汇算清缴补税（缴款期限）通知书",
+          "sdsj": "2026-07-15 09:20:00",
+          "sdfs": "电子送达",
+          "cllx": "1"
+        }
+      ]
+    }
+  },
+  {
+    "match": "/commonbusiness/swws/sign/status/query",
+    "method": "get",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "qdzt": "1",
+        "qdsj": "2026-06-01 08:00:00"
+      }
+    }
+  },
+  {
+    "match": "/commonbusiness/swws/content/query",
+    "method": "post",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "content": "《税务文书电子送达确认书》模拟内容：本人同意通过电子方式接收税务机关送达的税务文书。"
+      }
+    }
+  },
+  {
+    "match": "/commonbusiness/swws/sign",
+    "method": "post",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "qdzt": "1",
+        "qdsj": "2026-08-19 00:00:00"
+      }
+    }
+  }
+]

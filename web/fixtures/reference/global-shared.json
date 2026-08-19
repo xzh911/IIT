@@ -178,16 +178,35 @@
    "data": "N"
   }
  },
- {
-  "match": "/invoice/ttxx/ttxxList/query",
-  "method": "post",
-  "data": {
-   "code": "SUCCESS",
+  {
+   "match": "/invoice/ttxx/ttxxList/query",
+   "method": "post",
    "data": {
-    "fpTtxxList": []
+    "code": "SUCCESS",
+    "data": {
+     "fpTtxxList": [
+      {
+       "ttxh": "20260801000001",
+       "ttxhType": "GR",
+       "nsrmc": "张伟",
+       "ttlx": "GR",
+       "brtt": "Y",
+       "mrtt": "Y",
+       "nsrsbh": ""
+      },
+      {
+       "ttxh": "20260801000002",
+       "ttxhType": "DW",
+       "nsrmc": "北京示例科技有限公司",
+       "ttlx": "DW",
+       "brtt": "N",
+       "mrtt": "N",
+       "nsrsbh": "91110108MOCK00000X"
+      }
+     ]
+    }
    }
-  }
- },
+  },
  {
   "match": "/invoice/fpxq/querytips",
   "method": "post",
@@ -301,14 +320,29 @@
    "data": []
   }
  },
- {
-  "match": "/commonbusiness/swws/mx/find",
-  "method": "get",
-  "data": {
-   "code": "SUCCESS",
-   "data": {}
-  }
- },
+  {
+   "match": "/commonbusiness/swws/mx/find",
+   "method": "get",
+   "data": {
+    "code": "SUCCESS",
+    "data": {
+     "wsxh": "MOCKWS202608010001",
+     "wslx": "BDA1220074",
+     "wsbt": "关于您的个人所得税综合所得年度汇算的税务事项通知书",
+     "sdsj": "2026-08-01 10:30:00",
+     "sdfs": "电子送达",
+     "bjzt": "N",
+     "cyzt": "N",
+     "content": "尊敬的纳税人：您2025年度综合所得年度汇算申报信息已审核通过，应纳税额已结清，特此通知。",
+     "tips": "本通知为模拟数据，仅用于功能演示。",
+     "button": {
+      "buttonText": "",
+      "type": ""
+     },
+     "images": []
+    }
+   }
+  },
  {
   "match": "/sb/yd/yh/zxfjkc/queryZxfjkcZnjyXq",
   "method": "post",

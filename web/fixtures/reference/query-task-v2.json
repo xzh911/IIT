@@ -1,0 +1,22 @@
+{
+  "match": "/zrr/task/queryTodoTask",
+  "method": "post",
+  "data": {
+    "code": "SUCCESS",
+    "data": {
+      "total": 2,
+      "content": [
+        {
+          "taskTitle": "年度综合所得汇算清缴业务办理提醒",
+          "taskContent": "您可以在2026年3月1日至6月30日期间办理2025年度综合所得汇算清缴申报，请及时完成。",
+          "taskLxDm": "A061009014"
+        },
+        {
+          "taskTitle": "专项附加扣除信息填报提醒",
+          "taskContent": "您的住房贷款利息专项附加扣除信息已发生变化，请及时核对并更新。",
+          "taskLxDm": "A061009014"
+        }
+      ]
+    }
+  }
+}

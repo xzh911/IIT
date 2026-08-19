@@ -113,5 +113,57 @@
         }
       }
     }
+  },
+  {
+    "match": "/sb/yd/grsdsndzxsb/cxYsbxx",
+    "method": "post",
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "sblsh": "MOCK202608010000000001",
+        "sbxh": "MOCK202608010000000001",
+        "skssnd": "2026",
+        "sssfss": "N",
+        "sssfssTip": "",
+        "extendDTO": {
+          "jkqx": "2026-08-31"
+        },
+        "nsrxxVO": {
+          "jsztDm": "02",
+          "ktse": 0,
+          "djse": 1580,
+          "tssq": {
+            "tdssqxh": "MOCKTDSSQ0000001"
+          }
+        },
+        "grsdsndzxsbZb": {
+          "ywlxDm": "A061009014",
+          "sfbhjwsd": "1",
+          "sqts": 0,
+          "sfhm": "N",
+          "ybtse": "0",
+          "dyGzNum": 0,
+          "yqbz": "0",
+          "skssqq": 1767196800000,
+          "skssqz": 1798732799000,
+          "hjdMc": "北京市朝阳区",
+          "hjdlxDm": "4",
+          "xxdz": {
+            "zgswjgmc": "国家税务总局北京市朝阳区税务局"
+          },
+          "xxdzxx": "北京市朝阳区望京街道",
+          "rzsgdw": {
+            "dwmc": "北京示例科技有限公司",
+            "zgswjgmc": "国家税务总局北京市朝阳区税务局"
+          },
+          "grsdsndzxsbJwsdQtxmList": [
+            {
+              "sdxm": "01",
+              "ynse": 0
+            }
+          ]
+        }
+      }
+    }
   }
 ]
