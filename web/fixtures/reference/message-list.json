@@ -4,30 +4,8 @@
   "data": {
     "code": "SUCCESS",
     "data": {
-      "total": 3,
-      "content": [
-        {
-          "messageId": "MOCK-MSG-001",
-          "messageTypeName": "重要提示",
-          "title": "关于办理2026年度个人所得税综合所得汇算清缴的提示",
-          "receiveDate": "2026-08-17 10:00:00",
-          "readed": false
-        },
-        {
-          "messageId": "MOCK-MSG-002",
-          "messageTypeName": "办理提醒",
-          "title": "您有一条待办事项需要处理，请及时查看",
-          "receiveDate": "2026-08-15 16:30:00",
-          "readed": false
-        },
-        {
-          "messageId": "MOCK-MSG-003",
-          "messageTypeName": "税收政策",
-          "title": "国家税务总局发布个人所得税有关政策公告",
-          "receiveDate": "2026-08-10 09:15:00",
-          "readed": true
-        }
-      ]
+      "total": 0,
+      "content": []
     }
   }
 }

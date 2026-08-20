@@ -1,5 +1,5 @@
 {
   "match": "/sb/yd/dbsb/sfzs",
   "method": "get",
-  "data": { "code": "SUCCESS", "data": "Y" }
+  "data": { "code": "SUCCESS", "data": "N" }
 }

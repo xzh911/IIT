@@ -124,11 +124,29 @@
     if (window.__MOCK_NSRSBH_REVEAL_INSTALLED__) return;
     window.__MOCK_NSRSBH_REVEAL_INSTALLED__ = true;
     document.addEventListener('click', function (event) {
-      var target = event.target && event.target.closest ? event.target.closest('.show-nsrsbh-btn') : null;
+      var target = event.target && event.target.closest
+        ? event.target.closest('.show-nsrsbh-btn, .icon-nsrsbh')
+        : null;
       if (!target) return;
       var store = findStore();
       var ui = store && store.state && store.state.userInfo;
-      if (!store || !ui || ui.nsrsbhNoHide) return;
+      if (!store || !ui) return;
+
+      // “我的”页的小眼睛原本在完整识别号尚未取得时会跳转短信验证页。
+      // 离线版直接写入本地 mock 值并切换显示状态，全程不请求验证码。
+      if (target.classList.contains('icon-nsrsbh')) {
+        var alreadyAvailable = !!ui.nsrsbhNoHide;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        if (!alreadyAvailable) store.commit('@USER/UPDATE_USER_NSRSBH_NO_HIDE', MOCK_USER.nsrsbh);
+        var owner = target.parentNode;
+        while (owner && (!owner.__vue__ || typeof owner.__vue__.eyesShow !== 'boolean')) owner = owner.parentNode;
+        if (owner && owner.__vue__) owner.__vue__.eyesShow = alreadyAvailable ? !owner.__vue__.eyesShow : true;
+        return;
+      }
+
+      // 个人信息页首次点击“查看”时直接揭示；已有完整值时保留官方“复制”行为。
+      if (ui.nsrsbhNoHide) return;
       event.preventDefault();
       event.stopImmediatePropagation();
       store.commit('@USER/UPDATE_USER_NSRSBH_NO_HIDE', MOCK_USER.nsrsbh);

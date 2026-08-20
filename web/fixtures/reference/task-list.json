@@ -4,39 +4,8 @@
   "data": {
     "code": "SUCCESS",
     "data": {
-      "total": 3,
-      "content": [
-        {
-          "taskTitle": "年度综合所得汇算清缴业务办理提醒",
-          "taskContent": "您可以在2026年3月1日至6月30日期间办理2025年度综合所得汇算清缴申报，请及时完成。",
-          "readStatus": 0,
-          "ywStatusCode": "01",
-          "ywStatusName": "待办理",
-          "icon": { "iconCode": "0202" },
-          "buttonColorCode": "primary",
-          "buttons": [{ "buttonName": "去申报", "gndm": "ndhsqj" }]
-        },
-        {
-          "taskTitle": "专项附加扣除信息填报提醒",
-          "taskContent": "您的住房贷款利息专项附加扣除信息已发生变化，请及时核对并更新。",
-          "readStatus": 1,
-          "ywStatusCode": "02",
-          "ywStatusName": "待处理",
-          "icon": { "iconCode": "0211" },
-          "buttonColorCode": "primary",
-          "buttons": [{ "buttonName": "去处理", "gndm": "specialIndex" }]
-        },
-        {
-          "taskTitle": "年度汇算退税进度通知",
-          "taskContent": "您提交的2025年度汇算退税申请已受理，税务机关将在规定时限内办理。",
-          "readStatus": 0,
-          "ywStatusCode": "03",
-          "ywStatusName": "办理中",
-          "icon": { "iconCode": "0201" },
-          "buttonColorCode": "primary",
-          "buttons": [{ "buttonName": "查看进度", "gndm": "taxReturn" }]
-        }
-      ]
+      "total": 0,
+      "content": []
     }
   }
 }

@@ -67,7 +67,7 @@
     '.etax-home-annual-start-hit{left:17px;top:139px;width:168px;height:48px;border-radius:25px!important}' +
     '.etax-home-annual-card button:focus-visible{outline:2px solid #1f7ff5;outline-offset:-3px}' +
     '.etax-home-annual-slot+.etax-home-important-after-annual{margin-top:48px!important}' +
-    '.zdj-home-container .zdj-home-notify-box .notify-item .notify-loop-div{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","PingFangSC-Medium","Helvetica Neue",sans-serif!important;font-weight:500!important}' +
+    '.zdj-home-container .zdj-home-notify-box .notify-item .notify-loop-div{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","PingFangSC-Regular","Helvetica Neue",sans-serif!important;font-weight:400!important}' +
     '.zdj-outter{background:rgba(255,255,255,.84)!important;-webkit-backdrop-filter:blur(12px) saturate(135%)!important;backdrop-filter:blur(12px) saturate(135%)!important;box-shadow:inset 0 0 10px rgba(255,255,255,.68),0 2px 15px rgba(0,0,0,.08)!important}' +
     '.zty-banner-swiper{margin-top:11px!important}' +
     '.zty-banner-swiper .swiper-pagination{display:none!important}';

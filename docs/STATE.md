@@ -2,7 +2,7 @@
 
 文档地图：`WORK-REPORT-2026-08-20-HIGH-FIDELITY-CLOSEOUT.md`（本轮完整报告/发布交接）｜`HANDOVER.md`（历史定论）｜`WORK-REPORT-2026-08-20-r8.md`（r8 早期批次）｜`FEEDBACK-2026-08-19.md`（真机反馈）。
 
-## 当前状态（2026-08-20）：高保真收口已发布 r10，待真机反馈
+## 当前状态（2026-08-20）：r10 后反馈修正已完成，未 commit/push
 - `web/dev/reference-cases.json` 共 38 case，所有 `referenceImage` 均存在；原图目录被 `.gitignore` 忽略且未被 Git 跟踪。
 - WebKit 基线固定 402×874 @3；严格 runner 会拦截非白名单 miss、外联、blocked、白屏、page/console error 和路由不符。
 - `git diff --check` PASS。此前里程碑 `bash web/build.sh`、修改/新增 JS 语法、JSON 解析和 fixture `{code:'SUCCESS',data:...}` 协议均 PASS。
@@ -19,6 +19,7 @@
 - 离线版短信验证码返回流程已移除；正常页面不增加全局模拟版水印。
 - 首页 7 张裁图位于 gitignored 私有目录；公开 Git 不提交像素，release 必须在 CI 产出后注入本地 `web/www` 并覆盖 IPA asset。
 - 发布：commit `fdb277e` 已 push；Actions run `32359893998` 成功；Release `etax-sim-r10` 最终 IPA 36,074,523 bytes，SHA-256 `c7ff224f…401c9`，7 张私有首页资源已注入并校验。
+- r10 后修正：首页待处理事项开关/数据、待办 3 条和消息 3 条示例已清空；黄条恢复官方 400 字重；“我的”识别号眼睛纯本地显隐并阻止短信验证路由。严格 3983/3958/3960 PASS，眼睛 probe `ok=true` 且验证码请求日志为空。
 
 ## 已知限制
 - `IMG_3950` 官方右上角“申诉”受官方业务条件控制；当前参考记录条件不满足，未篡改 fixture 或伪造按钮，作为已解释差异保留。
