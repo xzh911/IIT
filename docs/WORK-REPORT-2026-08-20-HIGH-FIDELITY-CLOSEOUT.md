@@ -237,6 +237,9 @@
 
 ## 11. 发布记录
 
-- 基线：`main` @ `9c854e7`，最新既有 release 为 `etax-sim-r9`。
-- 本轮 commit/tag/release：发布完成后回填。
-- 最终 IPA：必须是已注入私有首页资源并复核 asset 的版本。
+- 发布提交：`fdb277e`（`feat: 高保真收口首页与核心离线链路`），已 push `origin/main`。
+- GitHub Actions：run `32359893998`，`Build iOS IPA (SideStore, unsigned)` 全部步骤成功。
+- Release：`etax-sim-r10`，标题 `etax-sim IPA r10 — 高保真收口`。
+- CI 原始 asset 生成后，本地用最终 `web/www` 覆盖 IPA 内 `Payload/ETaxSim.app/www`，随后以同名 `etax-sim.ipa` 覆盖 release asset。
+- 最终 IPA：36,074,523 bytes；SHA-256 `c7ff224fca94e33c7b64dd8c7c21c774633226679c6844d45a050b8b01e401c9`。
+- 最终包 ZIP 完整性通过；包内年度整卡 + `home-promo-01`–`06` 共 7 张资源存在，抽查哈希与 `home-assets-manifest.json` 一致。
