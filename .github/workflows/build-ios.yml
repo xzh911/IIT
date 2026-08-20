@@ -28,11 +28,24 @@ jobs:
             https://github.com/xzh911/IIT/releases/download/cdn-www-v1/cdn-www.zip
           unzip -q /tmp/cdn-www.zip -d reference/
 
+      - name: "下载并校验首页高保真资源 (asset home-assets-v1)"
+        run: |
+          mkdir -p web/fixtures/private/home
+          curl -fsSL -H "Authorization: token ${{ github.token }}" \
+            -H "Accept: application/octet-stream" \
+            -o /tmp/home-assets-v1.zip \
+            https://github.com/xzh911/IIT/releases/download/home-assets-v1/home-assets-v1.zip
+          unzip -q -j /tmp/home-assets-v1.zip -d web/fixtures/private/home
+          python3 tools/verify-home-assets.py web/fixtures/private/home
+
       - name: 构建 web/www（纯 python3，macos 自带）
         run: bash web/build.sh
 
       - name: 构建免签 IPA（xcodebuild CODE_SIGNING_ALLOWED=NO）
         run: bash ios/build-ipa.sh
+
+      - name: "校验 IPA 内首页高保真资源"
+        run: python3 tools/verify-home-assets.py --ipa ios/out/etax-sim.ipa
 
       - name: 上传 IPA Artifact
         uses: actions/upload-artifact@v4
@@ -51,4 +64,4 @@ jobs:
           gh release create "$TAG" ios/out/etax-sim.ipa \
             -R "${{ github.repository }}" \
             --title "etax-sim IPA r${{ github.run_number }}" \
-            --notes "免签 IPA（SideStore 安装，测试/复刻用途）。$(date -u '+%Y-%m-%d %H:%M UTC') · commit ${{ github.sha }}"
+            --notes "免签 IPA（SideStore 安装，测试/复刻用途）。首页资源 home-assets-v1 已通过 manifest SHA-256 校验。$(date -u '+%Y-%m-%d %H:%M UTC') · commit ${{ github.sha }}"

@@ -98,13 +98,12 @@ mkdir -p "$WWW/static/images"
 for f in "$FIX"/reference/*.svg "$FIX"/reference/*.png "$FIX"/reference/*.js "$FIX"/custom/*.svg "$FIX"/custom/*.png; do
     [ -f "$f" ] && cp -f "$f" "$WWW/static/images/"
 done
-# 首页动态宣传画来自私有官方证据的局部裁切。目录被 gitignore；存在时接入，缺失时由
-# menu-shim 的官方 cdn-www banner-none 兜底，构建不能因此失败。
-if [ -d "$FIX/private/home" ]; then
-    find "$FIX/private/home" -maxdepth 1 -type f -name 'home-promo-*.png' -exec cp -f {} "$WWW/static/images/" \;
-    [ ! -f "$FIX/private/home/home-annual-card-full.png" ] || cp -f "$FIX/private/home/home-annual-card-full.png" "$WWW/static/images/"
-    [ ! -f "$FIX/private/home/home-annual-artwork.png" ] || cp -f "$FIX/private/home/home-annual-artwork.png" "$WWW/static/images/"
-fi
+# 首页年度卡与 6 张宣传图属于 release-only 资源：本地来自 gitignored private/home，
+# CI 从固定 Release home-assets-v1 下载。缺失或哈希不符必须中止，禁止静默发布缺图 IPA。
+python3 "$ROOT/tools/verify-home-assets.py" "$FIX/private/home"
+cp -f "$FIX/private/home/home-annual-card-full.png" "$WWW/static/images/"
+for f in "$FIX"/private/home/home-promo-0[1-6].png; do cp -f "$f" "$WWW/static/images/"; done
+python3 "$ROOT/tools/verify-home-assets.py" "$WWW/static/images"
 cp -f "$FIX"/reference/menu-shim.js "$WWW/static/" 2>/dev/null || true
 mkdir -p "$WWW/static/js"
 for f in "$FIX"/reference/cjwt-*.js; do [ -f "$f" ] && cp -f "$f" "$WWW/static/js/"; done

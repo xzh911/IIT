@@ -730,8 +730,8 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 
 1. 已建立 38 个 reference case（37 runnable + 1 JPG artifact），固定 WebKit 402×874 @3；严格 runner 会拦截非白名单 miss、外联、blocked/requestfailed、HTTP 错误、白屏、page/console error、路由和 expectedText 错误。
 2. 38 个 case 是建档矩阵，不是 38 个全部通过。发布前审计时已有严格 PASS 证据的只有 3936、3949、3950、3951、3983；runner 也尚无并排图/diff region/mask 实算，不能把 PASS 写成像素级验收。
-3. 首页已补 2025 汇算整卡、三条橙色提醒、重点服务、6 张宣传图、警示/通知/热点/政策内容；整卡保留 DOM 点击热区。提醒字体锁定 PingFang 系统链 500，tabbar 使用更不透明的 12px 磨砂玻璃。
+3. 首页已补 2025 汇算整卡、三条橙色提醒、重点服务、6 张宣传图、警示/通知/热点/政策内容；整卡保留 DOM 点击热区。提醒字体使用 PingFang 系统链常规字重 400，tabbar 使用更不透明的 12px 磨砂玻璃。
 4. 收入动态筛选/合计/详情、个人信息编辑与脱敏、AFS 真实拖动/生成、手势设置与验证均已实现；短信验证码返回流程已从离线识别号查看链移除。
-5. 首页整卡和 6 张宣传图在 gitignored `web/fixtures/private/home/`。公开 GitHub CI checkout 不含这些像素；发布时必须在 CI 产出后用本地 `web/www` 替换 IPA 内 www，再覆盖 release asset。禁止把原图、HAR 或私有裁图提交公开 Git。
+5. 首页整卡和 6 张宣传图在 gitignored `web/fixtures/private/home/`，固定发布资源为 `home-assets-v1/home-assets-v1.zip`。CI 自动下载，并按 `home-assets-manifest.json` 在源目录、Web 产物、IPA 内三次校验；详见 `docs/RELEASE.md`。禁止绕过校验或提交原始截图/HAR。
 6. 仍需真机签收状态栏、安全区、键盘、触控、冷启动和首页最终视觉；完整专题 H5、实时官方服务、扫码/推送/生物认证继续 out-of-scope。
 7. 已发布：commit `fdb277e` → Actions run `32359893998` 成功 → Release `etax-sim-r10`。最终 IPA 已在 CI 后本地注入 7 张私有首页资源并覆盖 asset；大小 36,074,523 bytes，SHA-256 `c7ff224fca94e33c7b64dd8c7c21c774633226679c6844d45a050b8b01e401c9`。
