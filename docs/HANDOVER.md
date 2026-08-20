@@ -735,3 +735,4 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 5. 首页整卡和 6 张宣传图在 gitignored `web/fixtures/private/home/`，固定发布资源为 `home-assets-v1/home-assets-v1.zip`。CI 自动下载，并按 `home-assets-manifest.json` 在源目录、Web 产物、IPA 内三次校验；详见 `docs/RELEASE.md`。禁止绕过校验或提交原始截图/HAR。
 6. 仍需真机签收状态栏、安全区、键盘、触控、冷启动和首页最终视觉；完整专题 H5、实时官方服务、扫码/推送/生物认证继续 out-of-scope。
 7. 已发布：commit `fdb277e` → Actions run `32359893998` 成功 → Release `etax-sim-r10`。最终 IPA 已在 CI 后本地注入 7 张私有首页资源并覆盖 asset；大小 36,074,523 bytes，SHA-256 `c7ff224fca94e33c7b64dd8c7c21c774633226679c6844d45a050b8b01e401c9`。
+8. 发布链已永久修复：commit `25ec597` 后，CI 自动下载 `home-assets-v1` 并做三段强校验；run `32364532078` 成功生成 r12，远端 IPA 独立下载校验 7 图 PASS。以后禁止再走手工覆盖 IPA 流程。

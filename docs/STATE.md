@@ -4,7 +4,7 @@
 
 > **发布 P0：先读 `docs/RELEASE.md`。** CI 必须下载 `home-assets-v1`，并在源目录、Web 产物和 IPA 内三次校验 7 张首页图；缺图/错图直接失败，禁止发布。
 
-## 当前状态（2026-08-20）：r11 已补图；CI 防缺图改造待 commit/push
+## 当前状态（2026-08-20）：CI 自动带图已上线，r12 验证通过
 - `web/dev/reference-cases.json` 共 38 case，所有 `referenceImage` 均存在；原图目录被 `.gitignore` 忽略且未被 Git 跟踪。
 - WebKit 基线固定 402×874 @3；严格 runner 会拦截非白名单 miss、外联、blocked、白屏、page/console error 和路由不符。
 - `git diff --check` PASS。此前里程碑 `bash web/build.sh`、修改/新增 JS 语法、JSON 解析和 fixture `{code:'SUCCESS',data:...}` 协议均 PASS。
@@ -23,7 +23,7 @@
 - 发布：commit `fdb277e` 已 push；Actions run `32359893998` 成功；Release `etax-sim-r10` 最终 IPA 36,074,523 bytes，SHA-256 `c7ff224f…401c9`，7 张私有首页资源已注入并校验。
 - r10 后修正：首页待处理事项开关/数据、待办 3 条和消息 3 条示例已清空；黄条恢复官方 400 字重；“我的”识别号眼睛纯本地显隐并阻止短信验证路由。严格 3983/3958/3960 PASS，眼睛 probe `ok=true` 且验证码请求日志为空。
 - 用户已提交/push `cab405a` 并生成 r11；自动包最初缺图，现已用含图 IPA 覆盖。r11 最终 36,074,355 bytes，SHA-256 `73654de0…72c16`。
-- 防复发改造：资源 Release `home-assets-v1` 已建立；workflow/构建脚本/IPA 三段强校验和 `docs/RELEASE.md` 已完成，尚未 commit/push。
+- 防复发改造已发布：commit `25ec597`；资源 Release `home-assets-v1`；Actions run `32364532078` 成功。自动生成 r12 后重新下载并独立校验，IPA 内 7 图 PASS；SHA-256 `d8345297…feb1f`。
 
 ## 已知限制
 - `IMG_3950` 官方右上角“申诉”受官方业务条件控制；当前参考记录条件不满足，未篡改 fixture 或伪造按钮，作为已解释差异保留。

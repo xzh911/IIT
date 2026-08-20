@@ -36,6 +36,8 @@ HOME ASSET VERIFY PASS: 7 assets
 
 该信息应出现三次：下载后、Web 构建复制后、IPA 打包后。
 
+首次上线验证：commit `25ec597` → Actions run `32364532078` → Release `etax-sim-r12`。远端 IPA 重新下载后执行 `--ipa` 校验通过，SHA-256 为 `d8345297653ad419e5684418f5a7f3f815661e89d5213200d8c88304223feb1f`。
+
 也可以下载 IPA 后人工复核：
 
 ```bash
