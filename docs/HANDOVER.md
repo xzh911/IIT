@@ -1,6 +1,6 @@
 # 交接文档 — 个人所得税 App 高保真复刻（新对话主入口）
 
-> **最后更新**：2026-08-19 22:20（§27：真机反馈定版 + FEEDBACK 文档；§26：轮次③ dev 面板 V2）
+> **最后更新**：2026-08-20（§31：高保真收口；完整报告见 `WORK-REPORT-2026-08-20-HIGH-FIDELITY-CLOSEOUT.md`）
 > **给下一个模型**：先读本文件 + 下面《0. 速览》里的 4 个文件，然后按《9. 建议开场》开始。
 > 标注：★ = 容器 WebKit 运行时**已实证**；[静态] = 混淆代码分析结论。历史细节见各引用文件。
 > 目录根：`/home/xxx/workload/IIT`
@@ -231,7 +231,7 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 8. **容器不挂 /tmp/kilo**：探针写 `__probe/`；脚本名用 `.js`（CommonJS），别用 `.mjs`（容器 node 20 默认 CJS）。
 9. **`globalsystemtime` 用动态路由**（Date.now），静态时间戳会过期。
 10. **服务反复死**：每次会话重启 8088 后先 `curl localhost:8088` 确认 200 再跑容器探针（否则页面 about:blank、sweep 全空）。
-11. **识图 MCP 可用（2026-08-18 起实证）**：本会话模型**可以直接看图片**——用 `vision_analyze_image` 工具（传本地路径或 URL，配 prompt 让视觉模型描述/定位/OCR）。截图 `web/dev/diffs/*.png` 可直接分析。视觉比对仍可配 `pixel_diff.py`（`python3 .kilocode/skills/vision-tools/scripts/pixel_diff.py a.png b.png`，像素差异区域定位）。`glance`/`ground` 需要 VISION_API_KEY（未配置）；**识图走 vision_analyze_image，不要再假设模型看不了图**。※旧描述（"模型看不了图片"）作废。
+11. **识图能力按运行时分流（2026-08-20 更新，覆写本节早期结论）**：**Codex 模型原生多模态 → 可直接看图且很强，要多做截图直读**；**Kilo 主模型无原生图像输入 → 看图必须走 `vision_analyze_image` 工具**（本地路径或 URL + prompt，转发 OpenRouter 视觉模型描述/定位/OCR）。截图 `web/dev/diffs/*.png` 可直接分析。视觉比对仍配 `pixel_diff.py`（`python3 .kilocode/skills/vision-tools/scripts/pixel_diff.py a.png b.png`）。`glance`/`ground` 需要 VISION_API_KEY（未配置）。※旧定性「本会话模型可以直接看图片」覆写为「Kilo 侧是工具可用、模型不能原生看图」；规则 §17 已按此更新。
 12. **chcp.manifest 带 BOM**：解析 JSON 用 `encoding='utf-8-sig'`，否则 key 名带 `\ufeff` 匹配失败（下载脚本已处理；手工分析时注意）。
 13. **Kilo 写文件权限**：本项目 `edit` 权限只放行 plans 路径 —— 写仓库文件用 bash heredoc（`cat > file <<'EOF'`）或 python 脚本，不要在 edit 工具上耗时间；如需放开，改 kilo.json permissions。
 14. **长任务不用 nohup**：bash 工具超时会连带杀死 nohup 子进程 → 长任务用 `background_process`（8088 服务、下载等）。
@@ -723,3 +723,14 @@ Cordova iOS + WKWebView + **Vue 2 SPA**（webpack 655 chunk，**594 前端路由
 
 **下轮开工建议**：① 问题 3（入口，15min）+ 问题 5（确认指哪两处后置空）→ ② 问题 1+2（个人信息/脱敏，同域一次 investigation）→ ③ 问题 4（滑块）→ ④ 问题 7（面板宫格化，可与 3 同批）。每批：改 → build → 容器探针 targeted 验证 → commit+push → CI 出 r8 → 用户真机。
 **遗留（承接 §29）**：taxRecordList 动态过滤（已接受降级）；首页内容层（汇算 box/宣传栏/警示案例/公告，FEEDBACK §6 既有）；r7 真机复验。
+
+## 31. 高保真收口批次（2026-08-20）— 38-case 基线、首页、核心链路与发布交接
+
+**完整事实与发布步骤以 `docs/WORK-REPORT-2026-08-20-HIGH-FIDELITY-CLOSEOUT.md` 为准。** 本节只保留必须知道的结论：
+
+1. 已建立 38 个 reference case（37 runnable + 1 JPG artifact），固定 WebKit 402×874 @3；严格 runner 会拦截非白名单 miss、外联、blocked/requestfailed、HTTP 错误、白屏、page/console error、路由和 expectedText 错误。
+2. 38 个 case 是建档矩阵，不是 38 个全部通过。发布前审计时已有严格 PASS 证据的只有 3936、3949、3950、3951、3983；runner 也尚无并排图/diff region/mask 实算，不能把 PASS 写成像素级验收。
+3. 首页已补 2025 汇算整卡、三条橙色提醒、重点服务、6 张宣传图、警示/通知/热点/政策内容；整卡保留 DOM 点击热区。提醒字体锁定 PingFang 系统链 500，tabbar 使用更不透明的 12px 磨砂玻璃。
+4. 收入动态筛选/合计/详情、个人信息编辑与脱敏、AFS 真实拖动/生成、手势设置与验证均已实现；短信验证码返回流程已从离线识别号查看链移除。
+5. 首页整卡和 6 张宣传图在 gitignored `web/fixtures/private/home/`。公开 GitHub CI checkout 不含这些像素；发布时必须在 CI 产出后用本地 `web/www` 替换 IPA 内 www，再覆盖 release asset。禁止把原图、HAR 或私有裁图提交公开 Git。
+6. 仍需真机签收状态栏、安全区、键盘、触控、冷启动和首页最终视觉；完整专题 H5、实时官方服务、扫码/推送/生物认证继续 out-of-scope。

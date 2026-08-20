@@ -1,3 +1,5 @@
+<!-- ⚠️ 已过时（2026-08-20 标注）: 历史报告，勿再作为现行依据。现行入口 = docs/STATE.md（文档地图）→ docs/HANDOVER.md / docs/WORK-REPORT-2026-08-20-r8.md。 -->
+
 # WORK-REPORT — 任务2 遗留三小项收尾：免征额 toast / 申报详情字段 / Promise Rejection（2026-08-19 下午）
 
 > 目标（HANDOVER §23 遗留优先级）：① 全页 toast「查询免征额出错！」；② 申报详情「税款所属年度/所属期/汇算地」等字段空；③ record-hub Unhandled Promise Rejection。

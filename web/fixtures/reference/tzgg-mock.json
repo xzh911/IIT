@@ -2,7 +2,16 @@
   {
     "match": "/commonbusiness/tzgg/lamp/list/query",
     "method": "get",
-    "data": { "code": "SUCCESS", "data": [] }
+    "data": {
+      "code": "SUCCESS",
+      "data": {
+        "content": [
+          { "contentId": "home-lamp-2025-03", "title": "关于近期虚假退税宣传的温馨提示", "url": "" },
+          { "contentId": "home-lamp-2025-01", "title": "关于警惕假冒税务通知的温馨提示", "url": "" },
+          { "contentId": "home-lamp-2025-02", "title": "关于《个人所得税综合所得汇算清缴管理办法》", "url": "" }
+        ]
+      }
+    }
   },
   {
     "match": "/commonbusiness/tzgg/rdwt/query",
@@ -12,7 +21,15 @@
   {
     "match": "/commonbusiness/tzgg/list/query",
     "method": "post",
-    "data": { "code": "SUCCESS", "data": [] }
+    "data": {
+      "code": "SUCCESS",
+      "data": [
+        { "contentId": "home-jsal-01", "title": "办理汇算想便捷 APP密码要记牢", "customTime": "2025-02-28", "publishTime": "2025-02-28" },
+        { "contentId": "home-jsal-02", "title": "获取退税想及时 准确卡号必须有", "customTime": "2025-02-28", "publishTime": "2025-02-28" },
+        { "contentId": "home-jsal-03", "title": "未依法办理个人所得税综合所得汇算清缴案件", "customTime": "2024-03-15", "publishTime": "2024-03-15" },
+        { "contentId": "home-jsal-04", "title": "未在法定期限内办理综合所得汇算清缴、虚假填报子女教育专项附加扣除案件", "customTime": "2024-03-15", "publishTime": "2024-03-15" }
+      ]
+    }
   },
   {
     "match": "/commonbusiness/tzgg/query",

@@ -49,6 +49,14 @@ html = re.sub(
 
 html = re.sub(r"<script>var noCaptcha;</script>\s*<script src=\./nc\.js></script>\s*<script src=\./AliyunCaptcha\.js></script>", '', html)
 
+# 业务 bundle 在 cordova overlay 执行前就可能读取 network-information 常量；必须早于 sdk/app 声明。
+connection_bootstrap = (
+    '<script>window.Connection=window.Connection||{UNKNOWN:"unknown",ETHERNET:"ethernet",'
+    'WIFI:"wifi",CELL_2G:"2g",CELL_3G:"3g",CELL_4G:"4g",CELL:"cellular",NONE:"none"};</script>'
+)
+if '<script src=./sdk.js>' in html:
+    html = html.replace('<script src=./sdk.js>', connection_bootstrap + '<script src=./sdk.js>', 1)
+
 # 3) 注入 overlay 脚本（在 cordova.js 之前，保证 api-stub 先就绪）
 inject = (
     '<script src="./fixtures-inline.js"></script>'
@@ -56,6 +64,7 @@ inject = (
     '<script src="./config-overrides.js"></script>'
     '<script src="./dev-entry.js"></script><script src="./mock-login.js"></script>'
     '<script src="./afs-slider.js"></script>'
+    '<script src="./home-annual-card.js"></script>'
 )
 if '<script src=./cordova.js>' in html:
     html = html.replace('<script src=./cordova.js>', inject + '<script src=./cordova.js>', 1)
@@ -81,6 +90,7 @@ cp "$OVL/config-overrides.js"  "$WWW/config-overrides.js"
 cp "$OVL/dev-entry.js"         "$WWW/dev-entry.js"
 cp "$OVL/mock-login.js"        "$WWW/mock-login.js"
 cp "$OVL/afs-slider.js"        "$WWW/afs-slider.js"
+cp "$OVL/home-annual-card.js"  "$WWW/home-annual-card.js"
 echo "[3/6] O1/O2/O4/O5 overlay 复制完成"
 
 # 非 JSON 资源（svg/png 等）复制到 static/images
@@ -88,6 +98,13 @@ mkdir -p "$WWW/static/images"
 for f in "$FIX"/reference/*.svg "$FIX"/reference/*.png "$FIX"/reference/*.js "$FIX"/custom/*.svg "$FIX"/custom/*.png; do
     [ -f "$f" ] && cp -f "$f" "$WWW/static/images/"
 done
+# 首页动态宣传画来自私有官方证据的局部裁切。目录被 gitignore；存在时接入，缺失时由
+# menu-shim 的官方 cdn-www banner-none 兜底，构建不能因此失败。
+if [ -d "$FIX/private/home" ]; then
+    find "$FIX/private/home" -maxdepth 1 -type f -name 'home-promo-*.png' -exec cp -f {} "$WWW/static/images/" \;
+    [ ! -f "$FIX/private/home/home-annual-card-full.png" ] || cp -f "$FIX/private/home/home-annual-card-full.png" "$WWW/static/images/"
+    [ ! -f "$FIX/private/home/home-annual-artwork.png" ] || cp -f "$FIX/private/home/home-annual-artwork.png" "$WWW/static/images/"
+fi
 cp -f "$FIX"/reference/menu-shim.js "$WWW/static/" 2>/dev/null || true
 mkdir -p "$WWW/static/js"
 for f in "$FIX"/reference/cjwt-*.js; do [ -f "$f" ] && cp -f "$f" "$WWW/static/js/"; done

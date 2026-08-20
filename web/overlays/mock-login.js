@@ -9,11 +9,21 @@
   'use strict';
   var MOCK_USER = {
     xm: '张伟',
-    sfzjhm: '110101199001011234',
+    sfzjhm: '3****************6',
     sfzjlxMc: '居民身份证',
-    nsrsbh: '110101199001011234',
+    sfzjlxDm: '201',
+    // 完整 mock 识别号仅用于离线“查看”，普通页面初始态仍写脱敏值。
+    nsrsbh: '311010101234567896',
+    csrq: 631123200000,
     sjhm: '13800001234',
-    xbDm: [],
+    gjhdqMc: '中国',
+    jwrzsggjDm: '156',
+    jwrzsggjMc: '中国',
+    xbDm: '1',
+    mzDm: '01',
+    xlDm: '30',
+    dzyx: '',
+    dzxx: [],
     houseRegionDm: [],
     houseAddress: '',
     residenceRegionDm: [],
@@ -75,14 +85,21 @@
       if (ui && ui.userInfoObj && !ui.userInfoObj.xm) {
         ui.userInfoObj = Object.assign({}, {
           xm: USER.xm,
-          nsrsbh: USER.nsrsbh,
+          nsrsbh: '3****************6',
           sfzjhm: USER.sfzjhm,
           sfzjlxMc: USER.sfzjlxMc,
-          xbDm: [USER.xbDm || '1'],
-          mzDm: ['01'],
-          xlDm: ['110'],
+          sfzjlxDm: USER.sfzjlxDm,
+          csrq: '1990-01-01',
+          sjhm: USER.sjhm,
+          gjhdqMc: USER.gjhdqMc,
+          jwrzsggjDm: USER.jwrzsggjDm,
+          jwrzsggjMc: USER.jwrzsggjMc,
+          xbDm: [USER.xbDm],
+          mzDm: [USER.mzDm],
+          xlDm: [USER.xlDm],
+          mail: USER.dzyx,
+          dzxx: USER.dzxx,
         }, ui.userInfoObj || {});
-        ui.nsrsbhNoHide = USER.nsrsbh;
         store.commit('@USER/COPY_USERINFO_ORIGINAL_DATA');
       }
       // 申报记录页（/declaration_record_general）直开兜底：
@@ -103,7 +120,23 @@
     }
   }
 
+  function installLocalNsrsbhReveal() {
+    if (window.__MOCK_NSRSBH_REVEAL_INSTALLED__) return;
+    window.__MOCK_NSRSBH_REVEAL_INSTALLED__ = true;
+    document.addEventListener('click', function (event) {
+      var target = event.target && event.target.closest ? event.target.closest('.show-nsrsbh-btn') : null;
+      if (!target) return;
+      var store = findStore();
+      var ui = store && store.state && store.state.userInfo;
+      if (!store || !ui || ui.nsrsbhNoHide) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      store.commit('@USER/UPDATE_USER_NSRSBH_NO_HIDE', MOCK_USER.nsrsbh);
+    }, true);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    installLocalNsrsbhReveal();
     setTimeout(function tick() {
       boot();
       if (!window.__MOCK_LOGIN_DONE__) setTimeout(tick, 500);

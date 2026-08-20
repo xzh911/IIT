@@ -53,10 +53,15 @@ web/deob/
 packetSniffing/
 etax-input.zip
 reference/alternate-web/
+reference/Original-Screenshot/
+reference/Original-Screenshot1/
 reference/analysis/manifest-diff.json
+# 由私有官方截图裁出的独特宣传画，仅供本地离线复刻；清单可提交，像素不可公开提交
+web/fixtures/private/
 
 # ── 开发截图 / IDE ───────────────────────────
 web/dev/diffs/
+.playwright/
 .vscode/
 
 # ── cordova 生成物（CI 由 build-ipa.sh 重建）──

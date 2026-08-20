@@ -4,5 +4,7 @@
   { "match": "/zrr/sqbs/bsqx/query", "method": "get", "data": { "code": "SUCCESS", "data": {} } },
   { "match": "/zrr/zjcd/bdfw/query", "method": "post", "data": { "code": "SUCCESS", "data": {} } },
   { "match": "/common/basecode/HLW_SB_KCND", "method": "get", "data": { "code": "SUCCESS", "data": [] } },
-  { "match": "/sb/yd/yybs/queryyybspzxx", "method": "get", "data": { "code": "SUCCESS", "data": {} } }
+  { "match": "/common/flow/grayRule", "method": "post", "data": { "code": "SUCCESS", "data": {} } },
+  { "match": "/common/basecode/HLW_SB_GRSDSNDZXSB_SBQJ", "method": "get", "data": { "code": "SUCCESS", "data": [] } },
+  { "match": "/sb/yd/yybs/queryyybspzxx", "method": "get", "data": { "code": "SUCCESS", "data": { "skssqq": "2025-01-01", "skssqz": "2025-12-31", "yyrqq": "2025-02-21", "yyrqz": "2025-03-20", "yykqsj": "06:00:00", "yyjssj": "22:00:00" } } }
 ]

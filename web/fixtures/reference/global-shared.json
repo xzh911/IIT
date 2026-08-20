@@ -309,7 +309,9 @@
   "method": "get",
   "data": {
    "code": "SUCCESS",
-   "data": []
+   "data": [
+    { "value": "110000", "label": "北京市", "level": "1" }
+   ]
   }
  },
  {
@@ -317,7 +319,9 @@
   "method": "get",
   "data": {
    "code": "SUCCESS",
-   "data": []
+   "data": [
+    { "value": "110105", "label": "朝阳区", "level": "3", "parent": "110000" }
+   ]
   }
  },
  {

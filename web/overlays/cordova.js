@@ -46,6 +46,7 @@
         goBack: function (cb) { cb && cb(); },
         closeApp: function (cb) { cb && cb(); },
         getUUID: function (cb) { cb && cb('mock-uuid-123'); },
+        getDeviceId: function (cb) { cb && cb('mock-device-123'); },
         getNetworkType: function (cb) { cb && cb('wifi'); },
         getNetworkStatus: function (cb) { cb && cb({ networkStatus: 'wifi', networkType: 'wifi' }); },
         getSignalStrength: function (cb) { cb && cb(80); },
@@ -132,8 +133,12 @@
   window.plugins = window.plugins || {};
   // 顺带补齐浏览器环境缺失对象（防各页面初始化报错）
   try {
+    window.Connection = window.Connection || {
+      UNKNOWN: 'unknown', ETHERNET: 'ethernet', WIFI: 'wifi', CELL_2G: '2g',
+      CELL_3G: '3g', CELL_4G: '4g', CELL: 'cellular', NONE: 'none'
+    };
     if (!window.navigator.connection) {
-      window.navigator.connection = { type: 'wifi', effectiveType: '4g' };
+      window.navigator.connection = { type: window.Connection.WIFI, effectiveType: '4g' };
     }
   } catch (e) {}
   window.plugins.sim = window.plugins.sim || {

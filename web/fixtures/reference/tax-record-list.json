@@ -8,7 +8,7 @@
         {
           "skssqq": "2026-01-01",
           "skssqz": "2026-01-31",
-          "sdxmDlDm": "01",
+          "sdxmDlDm": "0100",
           "sdxmDlmc": "综合所得",
           "grsdssdxmmc": "工资薪金所得",
           "ywlxDm": "A061001019",
@@ -23,7 +23,7 @@
         {
           "skssqq": "2026-02-01",
           "skssqz": "2026-02-28",
-          "sdxmDlDm": "01",
+          "sdxmDlDm": "0100",
           "sdxmDlmc": "综合所得",
           "grsdssdxmmc": "工资薪金所得",
           "ywlxDm": "A061001019",
@@ -38,7 +38,7 @@
         {
           "skssqq": "2026-03-01",
           "skssqz": "2026-03-31",
-          "sdxmDlDm": "02",
+          "sdxmDlDm": "0400",
           "sdxmDlmc": "劳务报酬所得",
           "grsdssdxmmc": "劳务报酬所得",
           "ywlxDm": "A061001020",
@@ -53,7 +53,7 @@
         {
           "skssqq": "2026-01-01",
           "skssqz": "2026-12-31",
-          "sdxmDlDm": "03",
+          "sdxmDlDm": "0200",
           "sdxmDlmc": "经营所得",
           "grsdssdxmmc": "经营所得",
           "ywlxDm": "A061001021",
@@ -66,7 +66,7 @@
           "nsrdah": "MOCK110101199001011234"
         }
       ],
-      "ybtseHj": 13487.99,
+      "ybtseHj": 13488,
       "sreHj": 157600
     }
   }

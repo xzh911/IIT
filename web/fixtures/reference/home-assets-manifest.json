@@ -1,0 +1,71 @@
+{
+  "_comment": "首页官方资源清单。source=crop 的像素位于 gitignored web/fixtures/private/home，仅本地私用；不含 Cookie、token、UID 或设备字段。",
+  "assets": [
+    {
+      "id": "home-annual-card-full",
+      "source": "crop",
+      "original": "reference/Original-Screenshot1/IMG_3983.PNG#39,546,1167,1170",
+      "dimensions": "1128x624",
+      "local": "./static/images/home-annual-card-full.png",
+      "sha256": "97cc9e0d555d47ec7f9a2e608e4fb09275a7c2c7586aad731e9c383c589c0e09",
+      "page": "#/zdj-home",
+      "usage": "年度汇算完整卡片，按 376x208 CSS 等比显示；进入专题页与开始申报由透明 DOM 点击区承载"
+    },
+    {
+      "id": "home-content-illustrations",
+      "source": "reference/cdn-www",
+      "original": "./static/images/{jsal,tzgg,rdwt,zcjd}1..4.*.png",
+      "local": "official bundled assets (unchanged)",
+      "page": "#/zdj-home",
+      "usage": "警示案例、通知公告、热点问题、政策解读四组列表插画"
+    },
+    {
+      "id": "home-promo-01",
+      "source": "crop",
+      "original": "reference/Original-Screenshot1/IMG_3986.PNG#39,360,1167,652",
+      "local": "./static/images/home-promo-01.png",
+      "sha256": "c8bb66cca2bac66e7f82b88655e4d6798ac2c53765ff4998fcf92720c49c8491",
+      "page": "#/zdj-home"
+    },
+    {
+      "id": "home-promo-02",
+      "source": "crop",
+      "original": "reference/Original-Screenshot1/IMG_3987.PNG#39,360,1167,652",
+      "local": "./static/images/home-promo-02.png",
+      "sha256": "75c89d81c5d7f0241ca9a988c299e35f5fbb6d9330075256a9a60bb7f164f536",
+      "page": "#/zdj-home"
+    },
+    {
+      "id": "home-promo-03",
+      "source": "crop",
+      "original": "reference/Original-Screenshot1/IMG_3988.PNG#39,360,1167,652",
+      "local": "./static/images/home-promo-03.png",
+      "sha256": "1e02dc26daa1bd4dd39c4e3f2c18b6454bbd5cbe373002c71eeb58529e9306be",
+      "page": "#/zdj-home"
+    },
+    {
+      "id": "home-promo-04",
+      "source": "crop",
+      "original": "reference/Original-Screenshot1/IMG_3989.PNG#39,360,1167,652",
+      "local": "./static/images/home-promo-04.png",
+      "sha256": "cc0b7e226c4d0dba28ff6dbc24a624c4bef1849d53926cf345c1717d42fd6da0",
+      "page": "#/zdj-home"
+    },
+    {
+      "id": "home-promo-05",
+      "source": "crop",
+      "original": "reference/Original-Screenshot1/IMG_3990.PNG#39,360,1167,652",
+      "local": "./static/images/home-promo-05.png",
+      "sha256": "56c7f2ae62b81f07586913016c8c243002dc162412a3b206b239ad8c6ba8f283",
+      "page": "#/zdj-home"
+    },
+    {
+      "id": "home-promo-06",
+      "source": "crop",
+      "original": "reference/Original-Screenshot1/IMG_3991.PNG#39,360,1167,652",
+      "local": "./static/images/home-promo-06.png",
+      "sha256": "0856c25454ab8a1f4cc85a42e1a632a81c092f6b1005206a76d6fed69556e242",
+      "page": "#/zdj-home"
+    }
+  ]
+}

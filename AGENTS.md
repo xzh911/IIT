@@ -4,6 +4,15 @@
 优先级：正确完成 > 减少重复上下文 > 减少无效推理 > 多用 subagent > 确定性验证 > 控制输出。
 保真与证据规则见 `.kilo/rules/replica-project.md`（本文件只讲成本纪律，两者不冲突）。
 
+## 0.5 工具适配（Kilo / Codex 双环境，2026-08-20 加入）
+本文件全部规则**两种工具通用**；Codex 原生读取 root `AGENTS.md`（无需配置）。仅以下条目有工具差异：
+- subagent 派发：Kilo 用 `task`（bundle-investigator / fixture-fixer）；Codex 用 `codex exec -C <项目根> "派 <agent名> 完成…"` 显式点名（agent 定义在 `.codex/agents/*.toml`：bundle_investigator / fixture_fixer / verifier；以文件内 `name` 字段为准，下划线命名；0.144.1 无 `--agent` flag，靠提示语点名触发）
+- 验证命令 `wk xxx` = `podman exec -w /opt webkit node /work/xxx`（两种工具都可直接跑 podman）
+- `kilo config check` / `/checkpoint` 仅 Kilo；Codex 无对应物，配置检查用 `codex` 自身，状态更新手写 docs/STATE.md
+- 后台服务：Kilo 用 background_process；Codex 用 `nohup ... &`（VM 仅 3GB 内存，勿并发多个）
+- 视觉能力：**Codex 模型原生多模态，可直接看图且很强 → 要多看图、多做截图直读**；**Kilo 模型无原生图像输入，看图必须走 `vision_analyze_image` 工具**（本地路径/URL + prompt，转发外部视觉模型）。提示语勿写「模型看不了图」的一刀切结论，按运行时分流
+- 记忆文件（project.md/corrections.md 等）在 `~/.local/share/kilo/memory/`，**Codex 读不到**；会话事实一律以 docs/ 为准（STATE.md → HANDOVER.md）
+
 ## 0. 会话开局（每次必做）
 1. 读 `docs/STATE.md`（唯一短状态文件）。需要更多细节再按需读 `docs/HANDOVER.md` 对应段落。
 2. 不重复读取 STATE.md 已记录的事实。
@@ -38,6 +47,12 @@
 ## 5. 状态持久化
 - 里程碑/会话结束：更新 `docs/STATE.md`（保持 ≤50 行），或运行 `/checkpoint`
 - 禁止把完整会话历史写进 STATE.md；细节留给 docs/ 报告
+
+## 5.5 Done when（完成标准）
+- 单页/单接口修复：`wk web/dev/verify.js <名> 15` 通过（miss 数达标）+ 截图与 reference 对比无明显差异
+- 只读探索/字段映射：结论落 `docs/STATE.md` 或对应 docs 报告，标注确认/未确认
+- 里程碑：`bash web/build.sh` + 全量 sweep 通过，`docs/STATE.md` 已更新（≤50 行）
+- 配置/工具类变更：相关命令实测通过（如 `codex exec --strict-config` 不再报错）
 
 ## 6. 常用命令（工作目录 = 项目根）
 ```bash
